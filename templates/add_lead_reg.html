@@ -1,0 +1,166 @@
+
+{% extends 'base.html' %}
+
+{% load static  %}
+{% block content %}
+{%load crispy_forms_filters%}
+
+
+{% comment %} 
+
+<form action="{% url 'lead:create_lead_reg' %}"  method="post" >
+  {% csrf_token %}
+  <p>
+<label for="id_lead_code">Lead code:</label>
+<input type="text" name="lead_code" maxlength="50" value="{{ in_num }}"  required id="id_lead_code">
+
+
+</p>
+
+
+<p>
+<label for="id_lead_date">Lead date:</label>
+<input type="text" name="lead_date" value="2022-06-21" required id="id_lead_date">
+<input type="hidden" name="initial-lead_date" value="2022-06-21 10:21:59+00:00" id="initial-id_lead_date">
+
+
+</p>
+
+
+<p>
+<label for="id_service_type">Services:</label>
+<select name="service_type" required id="id_service_type">
+<option value="" selected>---------</option>
+
+<option value="1">Income Tax Return</option>
+
+<option value="2">Personal Loan</option>
+
+<option value="3">Pan Card</option>
+
+</select>
+
+
+</p>
+
+
+<p>
+<label for="id_party_name">Party name:</label>
+<input type="text" name="party_name" maxlength="50" required id="id_party_name">
+
+
+</p>
+
+
+<p>
+<label for="id_party_mobile">Party mobile:</label>
+<input type="number" name="party_mobile" step="1" required id="id_party_mobile">
+
+
+</p>
+
+
+<p>
+<label for="id_party_email">Party email:</label>
+<input type="email" name="party_email" maxlength="254" required id="id_party_email">
+
+
+</p>
+
+
+<p>
+<label for="id_party_address">Party address:</label>
+<input type="text" name="party_address" maxlength="100" required id="id_party_address">
+
+
+</p>
+
+
+<p>
+<label for="id_remark">Remark:</label>
+<input type="text" name="remark" maxlength="250" required id="id_remark">
+
+
+</p>
+
+
+<p>
+<label for="id_connector">Connector:</label>
+<select name="connector" required id="id_connector">
+<option value="" selected>---------</option>
+
+<option value="2">Anonymous</option>
+
+</select>
+
+
+
+
+</p>     
+     <button type="submit" class="btn btn-success">Save</button>
+
+</form> {% endcomment %}
+
+
+<div class="col-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Lead</h4>
+      <p class="card-description">
+        Add New Lead
+      </p>
+      <form class="forms-sample" action="{% url 'lead:create_lead_reg' %}" method="post"  >
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="id_lead_code">Lead Code</label>
+          <input type="text" class="form-control" name="lead_code" value="{{ in_num }}" id="id_lead_code">
+        </div>
+        <div class="form-group">
+          <label for="id_service_type">Services</label>
+          <select class="form-control" name="service_type"  id="id_connector">
+            <option value="{{service}}" selected></option>
+            {% for i in service%}
+              <option value="{{i.id}}">
+                  {{i}}
+              </option>
+              {% endfor %}
+            </select> 
+          </div>
+        <div class="form-group">
+          <label for="id_party_name">Name</label>
+          <input type="text" class="form-control" name="party_name" id="id_party_name" placeholder="Name">
+        </div>
+        <div class="form-group">
+          <label for="id_party_mobile">Mobile</label>
+          <input type="number" class="form-control" name="party_mobile" id="id_party_mobile" placeholder="Name">
+        </div>{% comment %} step="1"  {% endcomment %}
+        <div class="form-group">
+          <label for="id_party_email">Email address</label>
+          <input type="email" name="party_email" class="form-control" id="id_party_email" maxlength="254" placeholder="Email">
+        </div>
+        <div class="form-group">
+          <label for="id_party_address">Address</label>
+          <textarea class="form-control" maxlength="100" name="party_address" id="id_party_address" rows="4"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="id_remark">Remark</label>
+          <textarea class="form-control" name="remark" maxlength="100" id="id_remark" rows="4"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="id_connector">Connector</label>
+            <select class="form-control" name="connector"  id="id_connector">
+              <option value="{{connect}}" selected></option>
+              {% for i in connect%}
+                <option value="{{i.id}}">
+                    {{i}}
+                </option>
+                {% endfor %}
+              </select> 
+          </div>
+        <button type="submit" class="btn btn-primary mr-2">Submit</button>
+        <button class="btn btn-light">Cancel</button>
+      </form>
+    </div>
+  </div>
+</div>
+{%endblock%}

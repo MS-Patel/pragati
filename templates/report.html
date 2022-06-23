@@ -1,0 +1,83 @@
+{% load static  %}
+<!DOCTYPE html>
+<html lang="en">
+
+
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Pragati</title>
+        <!-- plugins:css -->
+        <link rel="stylesheet" href="{% static  'vendors/feather/feather.css' %}">
+        <link rel="stylesheet" href="{% static  'vendors/ti-icons/css/themify-icons.css' %}">
+        <link rel="stylesheet" href="{% static  'vendors/css/vendor.bundle.base.css'%}" >
+        <!-- endinject -->
+        <!-- Plugin css for this page -->
+        <link rel="stylesheet" href="{% static 'vendors/datatables.net-bs4/dataTables.bootstrap4.css'%}">
+        <link rel="stylesheet" href="{% static 'vendors/ti-icons/css/themify-icons.css'%}">
+        <link rel="stylesheet" type="text/css" href="{% static 'js/select.dataTables.min.css'%}">
+        <!-- End plugin css for this page -->
+        <!-- inject:css -->
+      <link rel="stylesheet" href="{% static 'css/vertical-layout-light/style.css'%}">
+        <!-- endinject -->
+      <link rel="shortcut icon" href="{% static  'images/favicon.png'%}" />
+      </head>
+
+<body>
+    <div class=" container-scroller">
+        <div class="container-fluid page-body-wrapper full-page-wrapper">
+          <div class="main-panel w-100  documentation">
+            <div class="content-wrapper">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-12 pt-5">
+                    <a class="btn btn-primary" href="{% url 'lead:home' %}"><i class="ti-home mr-2"></i>Back to home</a>
+                  </div>
+                </div>
+                <div class="row pt-5 mt-5">
+                  <div class="col-12 pt-5 text-center">
+                    <i class="text-primary mdi mdi-file-document-box-multiple-outline display-1"></i>
+                    <h3 class="text-primary font-weight-light mt-5">
+                      Report
+                    </h3>
+                   
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- partial:../../partials/_footer.html -->
+            <footer class="footer">
+                <div class="d-sm-flex justify-content-center">
+                    <p><span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2022 Developed by <a href="https://prathasystech.in/">PSPL.</a>
+                        All rights reserved.
+                      </p>
+                </div>
+                
+                
+              </footer> 
+              <!-- partial -->
+              <!-- plugins:js -->
+              <script src="{%static  'vendors/js/vendor.bundle.base.js'%}"></script>
+              <!-- endinject -->
+              <!-- Plugin js for this page -->
+              <script src="{%static  'vendors/chart.js/Chart.min.js'%}"></script>
+              <script src="{%static  'vendors/datatables.net/jquery.dataTables.js'%}"></script>
+              <script src="{%static  'vendors/datatables.net-bs4/dataTables.bootstrap4.js'%}"></script>
+              <script src="{%static  'js/dataTables.select.min.js'%}"></script> 
+            
+              <!-- End plugin js for this page -->
+              <!-- inject:js -->
+              <script src="{%static  'js/off-canvas.js'%}"></script>
+              <script src="{%static  'js/hoverable-collapse.js'%}"></script>
+              <script src="{%static  'js/template.js'%}"></script>
+              <script src="{%static  'js/settings.js'%}"></script>
+              <script src="{%static  'js/todolist.js'%}"></script>
+              <!-- endinject -->
+              <!-- Custom js for this page-->
+              <script src="{%static  'js/dashboard.js'%}"></script>
+              <script src="{%static  'js/Chart.roundedBarCharts.js'%}"></script>
+              <!-- End custom js for this page-->
+            </body>
+            
+            </html>

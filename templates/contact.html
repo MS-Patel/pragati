@@ -1,0 +1,301 @@
+{% load static  %}
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+  <!-- Meta Tags -->
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="">
+  <!-- Page Title -->
+  <title>Welcome to Pragati Capital & Services, Vadodara.</title>
+  <!-- Favicon Icon -->
+  <link rel="icon" href="{%static 'assets/img/favicon.gif' %}" />
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="{%static 'assets/css/bootstrap.min.css' %}" />
+  <link rel="stylesheet" href="{%static 'assets/css/fontawesome.css' %}" />
+  <link rel="stylesheet" href="{%static 'assets/css/flaticon.css' %}" />
+  <link rel="stylesheet" href="{%static 'assets/css/slick.css' %}" />
+  <link rel="stylesheet" href="{%static 'assets/css/lightgallery.min.css' %}" />
+  <link rel="stylesheet" href="{%static 'assets/css/animate.css' %}" />
+  <link rel="stylesheet" href="{%static 'assets/css/style.css' %}" />
+  <script src="https://kit.fontawesome.com/be73d4c488.js"  crossorigin="anonymous"></script>
+</head>
+
+<body class="st-blue">
+  <!-- Start Header Section -->
+  <header class="st-site-header st-style1 st-sticky-header">
+    <div class="st-top-header">
+      <div class="container">
+        <div class="st-top-header-in">
+          <ul class="st-top-header-list">
+            <li><i class="fas fa-envelope"></i>Email: <a href="#">info@gmail.com</a></li>
+            <li><i class="fas fa-phone-volume"></i>Contact: <a href="#">2222-333-7889 </a></li>
+            <li><i class="fas fa-clock"></i>Work time: <a href="#">9:00AM - 18:00PM</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="st-main-header">
+      <div class="container">
+        <div class="st-main-header-in">
+          <div class="st-main-header-left">
+            <a class="st-site-branding st-white-logo" href="/"><img src="{% static 'assets/img/logo-header.jpg'%}" alt="pcs-logo"></a>
+            <a class="st-site-branding st-dark-logo" href="/"><img src="{% static 'assets/img/logo-header.jpg'%}" alt="pcs-logo"></a>
+          </div>
+          <div class="st-main-header-right">
+            <div class="st-nav">
+              <ul class="st-nav-list st-onepage-nav">
+                <li><a href="{% url 'lead:webhome' %}">Home</a></li>
+                <li><a href="{% url 'lead:about' %}">About</a></li>          
+                <li><a href="{% url 'lead:contact' %}">Contact</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- End Header Section -->
+  <div class="st-height-b110 st-height-lg-b20"></div>
+  <div class="st-google-map">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d96652.27317354927!2d-74.33557928194516!3d40.79756494697628!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c3a82f1352d0dd%3A0x81d4f72c4435aab5!2sTroy+Meadows+Wetlands!5e0!3m2!1sen!2sbd!4v1563075599994!5m2!1sen!2sbd" allowfullscreen></iframe>
+  </div>
+  <div class="st-content">
+ 
+    <!-- Start Contact Section -->
+    <section id="contact">
+      <div class="st-height-b40 st-height-lg-b20"></div>
+      <div class="container">
+        <div class="st-section-heading st-style1">
+          <h2 class="st-section-heading-title">Contact Us</h2>
+          <div class="st-section-heading-seperator left wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.2s"></div>
+          <div class="st-section-heading-subtitle">Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmod tempor incididunt.</div>
+        </div>
+        <div class="st-height-b50 st-height-lg-b50"></div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8">
+            <div id="st-alert"></div>
+            <form action="assets/php/mail.php" class="row st-contact-form" method="post"  id="contact-form">
+              <div class="col-lg-6">
+               
+                 
+                  <div class="form-group">
+                    <label for="udepartment">Catagorys</label>
+                    <select class="form-control" name="udepartment" id="udepartment">
+                     
+                      <option value="government-work"> Government Work</option>
+                      <option>Loan</option>
+                      <option>Insurance</option>
+                      <option>Information Technology</option>
+                      <option>Investment Solution</option>
+                      <option>Other Services</option>
+                    </select>
+                  </div>
+               
+              </div><!-- .col -->
+              
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label for="udepartment">Services</label>
+                  <select class="form-control" name="udepartment" id="udepartment">
+                   
+                    <option >IT Returns</option>
+                      <option>Pan Card</option>
+                      <option>GST Registration</option>
+                      <option>MSME Business Certificat</option>
+                      <option>Polution Certificat</option>
+                      <option>Fire Safety Certificat</option>
+                  </select>
+                </div>
+             
+            </div>
+              <!-- .col -->
+              <div class="col-lg-6">
+                <div class="st-form-field">      
+                  <input type="text" id="name" name="name" required>
+                  <label>Full Name</label>
+                </div>
+              </div><!-- .col -->
+              <div class="col-lg-6">
+                <div class="st-form-field">      
+                  <input type="text" id="email" name="email" required>
+                  <label>Email Address</label>
+                </div>
+              </div><!-- .col -->
+              <div class="col-lg-6">
+                <div class="st-form-field">      
+                  <input type="text" id="subject" name="subject" required>
+                  <label>Subject</label>
+                </div>
+              </div><!-- .col -->
+              <div class="col-lg-6">
+                <div class="st-form-field">      
+                  <input type="text" id="phone" name="phone" required>
+                  <label>Phone</label>
+                </div>
+              </div><!-- .col -->
+              <div class="col-lg-12">
+                <div class="st-form-field">      
+                  <textarea cols="30" rows="10" id="msg" name="msg" required></textarea>
+                  <label>Your Message</label>
+                </div>
+              </div><!-- .col -->
+              <div class="col-lg-12">
+                <button class="st-btn st-style1 st-color1 st-size-medium" type="submit" id="submit" name="submit">Send message</button>
+                <div class="empty-space col-lg-b30"></div>
+              </div><!-- .col -->
+            </form>
+            <div class="st-height-b30 st-height-lg-b30"></div>
+          </div><!-- .col -->
+          <div class="col-lg-4">
+            <div class="st-contact-info">
+              <h2 class="st-contact-info-title">Corporate Office</h2>
+              <ul class="st-contact-info-list st-mp0">
+                <li><i class="fas fa-map-marker-alt"></i>503 Old Buffalo Street Northwest#205, New York-3087</li>
+                <li><i class="fas fa-phone-volume"></i>+00 222- 333 -7889</li>
+                <li><i class="fas fa-envelope"></i><a href="#">support@pragaticapitals.com</a></li>
+                <li><i class="fas fa-globe"></i><a href="#">www.pragaticapitals.com</a></li>
+              </ul>
+            </div>
+            <div class="st-height-b30 st-height-lg-b40"></div>
+            <div class="st-shidule">
+              <h2 class="st-shidule-title">Work Hours</h2>
+              <ul class="st-shidule-list st-mp0">
+                <li><span>Monday</span><span>8:00 AM – 4:30 PM</span></li>
+                <li><span>Tuesday</span><span>8:00 AM – 4:30 PM</span></li>
+                <li><span>Wednesday</span><span>8:00 AM – 4:30 PM</span></li>
+                <li><span>Thursday</span><span>8:00 AM – 4:30 PM</span></li>
+                <li><span>Friday</span><span>8:00 AM – 2:30 PM</span></li>
+                <li><span>Saturday</span><span>8:00 AM – 2:30 PM</span></li>
+                <li><span>Sunday</span><span>Closed</span></li>
+              </ul>
+            </div>
+            <div class="st-height-b30 st-height-lg-b30"></div>
+          </div>
+        </div>
+      </div>
+      <div class="st-height-b90 st-height-lg-b50"></div>
+    </section>
+    <!-- End Contact Section -->
+    <hr>
+    
+  </div>
+
+  <!-- Start Footer -->
+  <footer class="st-site-footer">
+    <div class="st-main-footer">
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-3">
+                  <div class="st-footer-widget">
+                      <div class="st-text-field">
+                          <img src="{% static 'assets/img/logo-footer.png'%}" alt="PCS" class="st-white-logo">
+                          <img src="{% static 'assets/img/logo-footer.png'%}" alt="PCS" class="st-dark-logo">
+                          <div class="st-height-b25 st-height-lg-b25"></div>
+                          <div class="st-footer-text">Lorem ipsum dolor sit consectetur adipisicing sed do eiusmod
+                              tempor incididunt ut labore. Lorem Ipsum is simply dummy.</div>
+                          <div class="st-height-b25 st-height-lg-b25"></div>
+                          <ul class="st-social-btn st-style1 st-mp0">
+                              <li><a href="#"><i class="fab fa-facebook-square"></i></a></li>
+                              <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+                              <li><a href="#"><i class="fab fa-pinterest-square"></i></a></li>
+                          </ul>
+                      </div>
+                  </div>
+              </div><!-- .col -->
+              <div class="col-lg-3">
+                  <div class="st-footer-widget">
+                      <h2 class="st-footer-widget-title">Our services</h2>
+                      <ul class="st-footer-widget-nav st-mp0">
+                          <li><a href="#"><i class="fas fa-chevron-right"></i>Government Work</a></li>
+                          <li><a href="#"><i class="fas fa-chevron-right"></i>Loans</a></li>
+                          <li><a href="#"><i class="fas fa-chevron-right"></i>Insurances</a></li>
+                          <li><a href="#"><i class="fas fa-chevron-right"></i>Investment Solutions</a></li>
+                      </ul>
+                  </div>
+              </div><!-- .col -->
+              <div class="col-lg-3">
+                  <div class="st-footer-widget">
+                      <h2 class="st-footer-widget-title">Company Info</h2>
+                      <ul class="st-footer-widget-nav st-mp0">
+                          <li><a href="#"><i class="fas fa-chevron-right"></i>About Us</a></li>
+                          <li><a href="#"><i class="fas fa-chevron-right"></i>Our Services</a></li>
+                          <li><a href="#"><i class="fas fa-chevron-right"></i>Contact</a></li>
+                      </ul>
+                  </div>
+              </div><!-- .col -->
+              <div class="col-lg-3">
+                  <div class="st-footer-widget">
+                      <h2 class="st-footer-widget-title">Useful Links</h2>
+                      <ul class="st-post-widget-list st-mp0">
+                          <li>
+                              <div class="st-post st-style1">
+                                  <a href="#" class="st-post-thumb st-zoom"><img
+                                          src="{% static 'https://via.placeholder.com/80x70'%}" alt="post1"
+                                          class="st-zoom-in"></a>
+                                  <div class="st-post-info">
+                                      <ul class="st-categories st-style1 st-mp0">
+                                          <li><a href="#">Lifestyle</a></li>
+                                      </ul>
+                                      <h2 class="st-post-title"><a href="blog-details.html">Business
+                                              Consultancy</a></h2>
+                                      <div class="st-post-date">1 Hours Ago</div>
+                                  </div>
+                              </div>
+                          </li>
+                          <li>
+                              <div class="st-post st-style1">
+                                  <a href="#" class="st-post-thumb st-zoom"><img
+                                          src="{% static 'https://via.placeholder.com/80x70'%}" alt="post2"
+                                          class="st-zoom-in"></a>
+                                  <div class="st-post-info">
+                                      <ul class="st-categories st-style1 st-mp0">
+                                          <li><a href="#">Lifestyle</a></li>
+                                      </ul>
+                                      <h2 class="st-post-title"><a href="blog-details.html">Accessible New
+                                              Design</a></h2>
+                                      <div class="st-post-date">3 Hours Ago</div>
+                                  </div>
+                              </div>
+                          </li>
+                      </ul>
+                  </div>
+              </div><!-- .col -->
+          </div>
+      </div>
+  </div>
+    <div class="st-copyright-wrap">
+      <div class="container">
+        <div class="st-copyright-in">
+          <div class="st-left-copyright">
+            <div class="st-copyright-text">Copyright  2019. Design by Themewatch</div>
+          </div>
+          <div class="st-right-copyright">
+            <div id="st-backtotop"><i class="fas fa-angle-up"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- End Footer -->
+
+
+
+  <!-- Scripts -->
+
+  <!-- Scripts -->
+  <script src="{% static 'assets/js/vendor/modernizr-3.5.0.min.js'%}"></script>
+  <script src="{% static 'assets/js/vendor/jquery-1.12.4.min.js'%}"></script>
+  <script src="{% static 'assets/js/isotope.pkg.min.js'%}"></script>
+  <script src="{% static 'assets/js/jquery.slick.min.js'%}"></script>
+  <script src="{% static 'assets/js/mailchimp.min.js'%}"></script>
+  <script src="{% static 'assets/js/counter.min.js'%}"></script>
+  <script src="{% static 'assets/js/lightgallery.min.js'%}"></script>
+  <script src="{% static 'assets/js/wow.min.js'%}"></script>
+  <script src="{% static 'assets/js/textRotate.min.js'%}"></script>
+  <script src="{% static 'assets/js/main.js'%}"></script>
+</html>
+

@@ -1,0 +1,32 @@
+
+{% extends 'base.html' %}
+
+{% load static  %}
+{% block content %}
+{%load crispy_forms_filters%}
+
+
+
+
+<div class="col-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Category</h4>
+            <p class="card-description">
+              Add New category
+            </p>
+            <form action="{% url 'lead:create_cat' %}" method="post" >
+                {% csrf_token %}
+              <div class="form-group">
+                <label for="id_name">Name</label>
+                <input type="text" class="form-control" name="name" autocomplete="off" required id="id_name" placeholder="Name">
+              </div>
+              
+              <button type="submit" class="btn btn-primary mr-2">Submit</button>
+              <button class="btn btn-light" action="{% url 'lead:view_cat' %}" method="post" >Cancel</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      {%endblock%}

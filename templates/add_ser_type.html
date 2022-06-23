@@ -1,0 +1,45 @@
+
+{% extends 'base.html' %}
+
+{% load static  %}
+{% block content %}
+{%load crispy_forms_filters%}
+
+
+
+<div class="col-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Service Types</h4>
+            <p class="card-description">
+              Add New Service
+            </p>
+            <form action="{% url 'lead:create_ser_type' %}" method="post" >
+                {% csrf_token %}
+              
+
+              <div class="form-group">
+                <label for="id_category">Category</label>
+                  <select name="category" class="form-control" id="id_category">
+                    <option value="{{category}}" selected></option>
+                    {% for i in category%}
+                      <option value="{{i.id}}">
+                          {{i}}
+                      </option>
+                      {% endfor %}
+                    </select> 
+                </div>
+
+                <div class="form-group">
+                        <label for="id_name">Service Type</label>
+                        <input type="text" class="form-control" name="name" autocomplete="off" required id="id_name" placeholder="Name">
+                      </div>
+              
+              <button type="submit" class="btn btn-primary mr-2">Submit</button>
+              <button class="btn btn-light"  >Cancel</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      {%endblock%}
