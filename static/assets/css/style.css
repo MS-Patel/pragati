@@ -40,7 +40,7 @@
 ----------------------------------------------------------------*/
 body,
 html {
-  color: #666;
+  color: #000;
   background-color: #fff;
   font-family: 'Roboto', sans-serif;
   font-size: 15px;
@@ -1045,11 +1045,13 @@ hr {
   width: 100%;
   left: 0;
   top: 0;
-  background: rgba(0, 0, 0, 0.8); }
+ /* background: rgba(0, 0, 0, 0.8);*/
+ }
 
 .st-hero-overlay:before {
   z-index: 1;
-  background: rgba(0, 0, 0, 0.5); }
+ /* background: rgba(0, 0, 0, 0.5); */
+}
 
 .st-hero-img-group {
   height: 450px;
@@ -1458,8 +1460,7 @@ hr {
   padding: 2px 0px 2px;
   border-radius: 10px;
   transition: all 0.4s ease;
-  margin: 10px 0px;
-  background-color: #ffffffbd; }
+  margin: 10px 0px; }
   .st-iconbox.st-style1 .st-iconbox-icon {
     display: flex;
     align-items: center;
@@ -1555,7 +1556,7 @@ hr {
 .st-video-block.st-style1 {
   border-radius: 4px; }
   .st-video-block.st-style1 .st-video-block-img {
-    height: 450px;
+    height: 360px;
     width: 100%; }
     .st-video-block.st-style1 .st-video-block-img:before {
       content: '';

@@ -41,8 +41,8 @@
       <div class="container">
         <div class="st-main-header-in">
           <div class="st-main-header-left">
-            <a class="st-site-branding st-white-logo" href="/"><img src="{% static 'assets/img/logo-header.jpg'%}" alt="pcs-logo"></a>
-            <a class="st-site-branding st-dark-logo" href="/"><img src="{% static 'assets/img/logo-header.jpg'%}" alt="pcs-logo"></a>
+            <a class="st-site-branding st-white-logo" href="{% url 'lead:webhome' %}"><img src="{% static 'assets/img/logo-header.jpg'%}" alt="pcs-logo"></a>
+            <a class="st-site-branding st-dark-logo" href="{% url 'lead:webhome' %}"><img src="{% static 'assets/img/logo-header.jpg'%}" alt="pcs-logo"></a>
           </div>
           <div class="st-main-header-right">
             <div class="st-nav">
@@ -61,51 +61,52 @@
 
   <div class="st-content">
     <div class="st-height-b80 st-height-lg-b80"></div>
-  <!-- Start Hero Seciton -->
-    <div class="st-slider st-style1 st-slider-animation1">
-      <div class="slick-container" data-autoplay="0" data-loop="1" data-speed="800" data-autoplay-timeout="1000" data-center="0" data-slides-per-view="1">
-        <div class="slick-wrapper">
-          <div class="slick-slide-in">
-            <div class="st-hero st-style1 st-size1 st-hero-overlay st-white">
-              <div class="st-hero-bg st-dynamic-bg st-bg" data-src="{% static 'assets/img/top-banner-01.jpg' %}"></div>
-              <div class="container">
-                <div class="st-hero-text">
-                  <h2 class="st-hero-title">
-                    <img src="{% static 'assets/img/logo-design-white.png'%}" width="350px" style="padding-bottom:50px;" alt="">
-                    ઓળખાણ એટલે સોનાની ખાણ 
-                  </h2>
-                
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="slick-slide-in">
-            <div class="st-hero st-style1 st-size1 st-hero-overlay st-white">
-              <div class="st-hero-bg st-dynamic-bg st-bg" data-src="{% static 'assets/img/top-banner-02.jpg'%}"></div>
-              <div class="container">
-                <div class="st-hero-text">
-                  <h1 class="st-hero-title guj-title">
-                    ઓળખાણ એટલે સોનાની ખાણ
-                  </h1>
-                  <div class="st-hero-subtitle">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod <br>tempor incididunt ut labore et dolore magna aliqua.</div>
-                </div>
+   <!-- Start Hero Seciton -->
+   <div class="st-slider st-style1 st-slider-animation1">
+    <div class="slick-container" data-autoplay="0" data-loop="1" data-speed="800" data-autoplay-timeout="1000" data-center="0" data-slides-per-view="1">
+      <div class="slick-wrapper">
+        <div class="slick-slide-in">
+          <div class="st-hero st-style1 st-size1 st-hero-overlay st-white">
+            <div class="st-hero-bg st-dynamic-bg st-bg" data-src="{% static 'assets/img/top-banner-03.jpg' %}"></div>
+            <div class="container">
+              <div class="st-hero-text" style="float: right;">
+                <h2 class="st-hero-title">
+                  <img src="{% static 'assets/img/logo-design-white.png'%}" width="350px" style="padding-bottom:50px;" alt="">
+                  ઓળખાણ એટલે સોનાની ખાણ 
+                </h2>
+              
               </div>
             </div>
           </div>
         </div>
-      </div><!-- .slick-container -->
-      <div class="pagination st-style2 st-hidden"></div> <!-- If dont need Pagination then add class .st-hidden -->
-      <div class="swipe-arrow st-style2"> <!-- If dont need navigation then add class .st-hidden -->
-        <div class="slick-arrow-left"><i class="fa fa-chevron-left"></i></div>
-        <div class="slick-arrow-right"><i class="fa fa-chevron-right"></i></div>
+        <div class="slick-slide-in">
+          <div class="st-hero st-style1 st-size1 st-hero-overlay st-white">
+            <div class="st-hero-bg st-dynamic-bg st-bg" data-src="{% static 'assets/img/top-banner-02.jpg'%}"></div>
+            <div class="container">
+              <div class="st-hero-text" style="float: right;">
+                <h1 class="st-hero-title guj-title">
+                  <img src="{% static 'assets/img/logo-design-white.png'%}" width="350px" style="padding-bottom:50px;" alt="">
+                  ઓળખાણ એટલે સોનાની ખાણ
+                </h1>
+                <div class="st-hero-subtitle">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod <br>tempor incididunt ut labore et dolore magna aliqua.</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div><!-- .st-slider -->
-    <!-- End Hero Seciton -->
+    </div><!-- .slick-container -->
+    <div class="pagination st-style2 st-hidden"></div> <!-- If dont need Pagination then add class .st-hidden -->
+    <div class="swipe-arrow st-style2"> <!-- If dont need navigation then add class .st-hidden -->
+      <div class="slick-arrow-left"><i class="fa fa-chevron-left"></i></div>
+      <div class="slick-arrow-right"><i class="fa fa-chevron-right"></i></div>
+    </div>
+  </div><!-- .st-slider -->
+  <!-- End Hero Seciton -->
 
   <hr>
 
   <!-- Start About Seciton -->
-  <section id="about">
+  <section id="about" style="background-color: #d1c5df;">
     <div class="st-height-b50 st-height-lg-b80"></div>
     <div class="container">
       <div class="st-section-heading st-style1">
@@ -142,14 +143,14 @@
         <div class="col-lg-6 wow fadeInRight" data-wow-duration="0.8s" data-wow-delay="0.2s">
           <div class="st-hobble">
             <div class="st-video-block st-style1 st-zoom st-hover-layer">
-              <div class="st-video-block-img st-zoom-in st-dynamic-bg" data-src="{% static 'assets/img/about-us.jpg'%}"></div>
+              <div class="st-video-block-img st-zoom-in st-dynamic-bg" data-src="{% static 'assets/img/about-us.jpg' %}"></div>
             </div>
           </div>
           <!-- <div class="st-height-b30 st-height-lg-b30"></div> -->
         </div><!-- .col -->
       </div>
     </div>
-    <div class="st-height-b120 st-height-lg-b80"></div>
+    <div class="st-height-b60 st-height-lg-b80"></div>
   </section>
   <!-- End About Seciton -->
   <hr>
@@ -320,10 +321,10 @@
             <div class="st-footer-widget">
               <h2 class="st-footer-widget-title">Our services</h2>
               <ul class="st-footer-widget-nav st-mp0">
-                <li><a href="{% url 'lead:about' %}"><i class="fas fa-chevron-right"></i>Loans</a></li>
-                <li><a href="{% url 'lead:about' %}"><i class="fas fa-chevron-right"></i>Insurances</a></li>
-                <li><a href="{% url 'lead:about' %}"><i class="fas fa-chevron-right"></i>Investment Solutions</a></li>
-                <li><a href="{% url 'lead:about' %}"><i class="fas fa-chevron-right"></i>Government Work</a></li>
+                <li><a href="{% static '#'%}"><i class="fas fa-chevron-right"></i>Loans</a></li>
+                <li><a href="{% static '#'%}"><i class="fas fa-chevron-right"></i>Insurances</a></li>
+                <li><a href="{% static '#'%}"><i class="fas fa-chevron-right"></i>Investment Solutions</a></li>
+                <li><a href="{% static '#'%}"><i class="fas fa-chevron-right"></i>Government Work</a></li>
               </ul>
             </div>
           </div><!-- .col -->
@@ -331,8 +332,8 @@
             <div class="st-footer-widget">
               <h2 class="st-footer-widget-title">Company Info</h2>
               <ul class="st-footer-widget-nav st-mp0">
-                <li><a href="{% url 'lead:about' %}"><i class="fas fa-chevron-right"></i>About Us</a></li>
-                <li><a href="{% url 'lead:about' %}"><i class="fas fa-chevron-right"></i>Our Services</a></li>
+                <li><a href="{% url 'lead:about' %}" ><i class="fas fa-chevron-right"></i>About Us</a></li>
+                <li><a href="{% url 'lead:about' %}" ><i class="fas fa-chevron-right"></i>Our Services</a></li>
                 <li><a href="{% url 'lead:contact' %}"><i class="fas fa-chevron-right"></i>Contact</a></li>
               </ul>
             </div>

@@ -40,9 +40,9 @@
             <div class="container">
                 <div class="st-main-header-in">
                     <div class="st-main-header-left">
-                        <a class="st-site-branding st-white-logo" href="/"><img
+                        <a class="st-site-branding st-white-logo" href="{% url 'lead:webhome' %}"><img
                                 src="{% static 'assets/img/logo-header.jpg'%}" alt="pcs-logo"></a>
-                        <a class="st-site-branding st-dark-logo" href="/"><img src="{% static 'assets/img/logo-header.jpg'%}"
+                        <a class="st-site-branding st-dark-logo" href="{% url 'lead:webhome' %}"><img src="{% static 'assets/img/logo-header.jpg'%}"
                                 alt="pcs-logo"></a>
                     </div>
                     <div class="st-main-header-right">
@@ -77,8 +77,8 @@
         </section>
         <!-- End FunFact Aection -->
 
-        <!-- Start About Seciton -->
-        <section id="about">
+          <!-- Start About Seciton -->
+          <section id="about" style="background-color: #d1c5df;">
             <div class="st-height-b50 st-height-lg-b80"></div>
             <div class="container">
                 <div class="st-section-heading st-style1">
@@ -127,9 +127,9 @@
                     </div><!-- .col -->
                 </div>
             </div>
+            <div class="st-height-b60 st-height-lg-b80"></div>
         </section>
         <!-- End About Seciton -->
-
         <!-- Start Skill Section -->
         <section class="logo-wm">
             <div class="st-height-b60 st-height-lg-b80"></div>
@@ -359,9 +359,9 @@
                         <div class="st-footer-widget">
                             <h2 class="st-footer-widget-title">Company Info</h2>
                             <ul class="st-footer-widget-nav st-mp0">
-                                <li><a href="#"><i class="fas fa-chevron-right"></i>About Us</a></li>
-                                <li><a href="#"><i class="fas fa-chevron-right"></i>Our Services</a></li>
-                                <li><a href="#"><i class="fas fa-chevron-right"></i>Contact</a></li>
+                                <li><a href="{% url 'lead:about' %}"><i class="fas fa-chevron-right"></i>About Us</a></li>
+                                <li><a href="{% url 'lead:about' %}" ><i class="fas fa-chevron-right"></i>Our Services</a></li>
+                                <li><a href="{% url 'lead:contact' %}"><i class="fas fa-chevron-right"></i>Contact</a></li>
                             </ul>
                         </div>
                     </div><!-- .col -->

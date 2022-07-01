@@ -21,22 +21,22 @@
         </div>
         <div class="form-group">
           <label for="id_con_name">Name</label>
-          <input type="text" class="form-control" name="con_name" autocomplete="off" maxlength="50"  id="id_con_name" placeholder="Name">
+          <input type="text" class="form-control" name="con_name" autocomplete="off" maxlength="50"  id="id_con_name" placeholder="Name" required>
         </div>
         <div class="form-group">
           <label for="id_con_mobile">Mobile</label>
-          <input type="number" name="con_mobile" class="form-control" autocomplete="off"  maxlength="50"  id="id_con_mobile" placeholder="Mobile">
+          <input type="number" name="con_mobile" class="form-control" autocomplete="off"  maxlength="50"  id="id_con_mobile" required placeholder="Mobile">
         </div>
         <div class="form-group">
           <label for="id_con_email">Email address</label>
-          <input type="email" name="con_email" class="form-control" autocomplete="off" id="id_con_email" placeholder="Email">
+          <input type="email" name="con_email" class="form-control" autocomplete="off" id="id_con_email" placeholder="Email" required>
         </div>
        
         <div class="form-group">
           <label>File upload</label>
           <input type="file" name="con_document" class="file-upload-default">
           <div class="input-group col-xs-12">
-            <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+            <input required type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
             <span class="input-group-append">
               <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
             </span>
@@ -44,15 +44,15 @@
         </div>
         <div class="form-group">
           <label for="id_con_account_no">Bank Account No</label>
-          <input type="number" name="con_account_no" autocomplete="off" class="form-control" id="id_con_account_no" placeholder="Bank Account No">
+          <input type="number" name="con_account_no" required autocomplete="off" class="form-control" id="id_con_account_no" placeholder="Bank Account No">
         </div>
         <div class="form-group">
           <label for="id_con_bank_name">Bank Name</label>
-          <input type="text" name="con_bank_name" autocomplete="off" class="form-control" id="id_con_bank_name" placeholder="Bank Name">
+          <input type="text" name="con_bank_name" required autocomplete="off" class="form-control" id="id_con_bank_name" placeholder="Bank Name">
         </div>
         <div class="form-group">
           <label for="id_con_ifsc_code">IFSC Code</label>
-          <input type="text" name="con_ifsc_code" autocomplete="off" class="form-control" id="id_con_ifsc_code" placeholder="IFSC Code">
+          <input type="text" name="con_ifsc_code" required autocomplete="off" class="form-control" id="id_con_ifsc_code" placeholder="IFSC Code">
         </div>
         <div class="form-group">
           <label for="id_con_branch">Branch Name</label>
@@ -60,7 +60,7 @@
         </div>
         
         <button type="submit" class="btn btn-primary mr-2">Submit</button>
-        <button class="btn btn-light">Cancel</button>
+        <a href="{% url 'lead:view_con_reg' %}"  class="btn btn-light">Cancel</a>
       </form>
     </div>
   </div>

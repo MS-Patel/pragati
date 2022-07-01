@@ -41,11 +41,11 @@ class Lead(models.Model):
     lead_code=models.CharField(max_length=50,unique=True)
     lead_date=models.DateField(default=timezone.now)
     service_type=models.ForeignKey(Service_types,verbose_name="services",on_delete=models.CASCADE)
-    party_name=models.CharField(max_length=50,null=True)  
-    party_mobile=models.DecimalField(max_digits=10,decimal_places=0,null=True)
-    party_email=models.EmailField(max_length=254,null=True)
-    party_address=models.CharField(max_length=100,null=True)
-    remark=models.CharField(max_length=250,null=True)
+    party_name=models.CharField(max_length=50,null=True, blank=True,)  
+    party_mobile=models.DecimalField(max_digits=10,decimal_places=0,null=True ,blank=True,)
+    party_email=models.EmailField(max_length=254,null=True, blank=True,)
+    party_address=models.CharField(max_length=100,null=True, blank=True,)
+    remark=models.CharField(max_length=250,null=True, blank=True,)
     connector=models.ForeignKey(Connector,verbose_name="connector",on_delete=models.CASCADE)
 
     def __str__(self):
