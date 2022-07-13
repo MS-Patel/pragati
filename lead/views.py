@@ -1,21 +1,12 @@
-from datetime import date, datetime
-from hmac import new
 import os
-from re import M
-from this import d
-from tkinter import Y
 from django.shortcuts import render,redirect
-from fileinput import filename
-from django.core.files.storage import FileSystemStorage
 from django.contrib import messages
 from accounts.models import Register
 from lead.models import Banner, Category, Connector, Lead, Service_types
 from .forms import Banner_form, Category_form,Service_types_form,Connector_form,Lead_form
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-import requests 
 from django.db.models import Count
-from datetime import datetime
 
 
 
