@@ -1,0 +1,53 @@
+
+{% extends 'base.html' %}
+
+{% load static  %}
+{% block content %}
+{%load crispy_forms_filters%}
+
+
+
+
+
+
+<div class="col-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Connector</h4>
+      <p class="card-description">
+        Edit Connector
+      </p>
+      <form class="forms-sample" action="{% url 'lead:update_banner' editbanner.pk %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="id_ban_code">Banner Code</label>
+          <input type="text" class="form-control" name="ban_code" value="{{ editbanner.ban_code }}" id="id_ban_code" readonly placeholder="Name">
+        </div>
+        
+        <div class="form-group">
+          <label>Image upload</label>
+          {% if editbanner.ban_img %}
+      <a href="/media/{{editbanner.ban_img}}" target="_blank">View Image</a>
+      {% endif %}
+          <input type="file" value="" name="ban_img" class="file-upload-default">
+          <div class="input-group col-xs-12">
+            <input type="text" class="form-control file-upload-info" autocomplete="off"  disabled placeholder="Upload File">
+            <span class="input-group-append">
+              <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+            </span>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="id_con_bank_name">Banner Comments</label>
+          <input type="text" name="ban_comments" autocomplete="off"  value="{{editbanner.ban_comments }}"  class="form-control" id="id_con_bank_name" placeholder="Bank Name">
+        </div>
+        
+        
+        <button type="submit" class="btn btn-primary mr-2">Submit</button>
+        <a href="{% url 'lead:view_banner' %}"  class="btn btn-light">Cancel</a>
+      </form>
+    </div>
+  </div>
+</div>
+{%endblock%}

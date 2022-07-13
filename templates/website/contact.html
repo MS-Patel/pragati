@@ -1,0 +1,207 @@
+{% extends 'website/webbase.html' %}
+
+{% load static  %}
+
+
+
+{% block content %}
+
+  <!-- End Header Section -->
+  <div class="st-height-b110 st-height-lg-b20"></div>
+  <div class="st-google-map">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d96652.27317354927!2d-74.33557928194516!3d40.79756494697628!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c3a82f1352d0dd%3A0x81d4f72c4435aab5!2sTroy+Meadows+Wetlands!5e0!3m2!1sen!2sbd!4v1563075599994!5m2!1sen!2sbd" allowfullscreen></iframe>
+  </div>
+  <div class="st-content">
+ 
+    <!-- Start Contact Section -->
+    <section id="contact">
+      <div class="st-height-b40 st-height-lg-b20"></div>
+      <div class="container">
+        <div class="st-section-heading st-style1">
+          <h2 class="st-section-heading-title">Contact Us</h2>
+          <div class="st-section-heading-seperator left wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.2s"></div>
+          <div class="st-section-heading-subtitle">Need Help? Contact us and our team of experts will help you. </div>
+        </div>
+        <div class="st-height-b50 st-height-lg-b50"></div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8">
+          <h5 style="color:green">{% if messages %}
+            {% for message in messages %}
+                <div>{{ message }}</div>
+            {% endfor %}
+        {% endif %}</h5>
+            <div id="st-alert"> </div>
+            <form action="{% url 'web:sentlead' %}" class="row st-contact-form" method="post"  id="contact-form">
+              {% csrf_token %}
+              
+
+
+              <input  class="form-control" type="hidden" name="lead_code" value="{{ in_num }}" id="id_lead_code">
+              <div class="col-lg-6">
+
+
+
+                <div class="form-group">
+                  <label for="categoryoptions">Category</label>
+                  <select id="categoryoptions" class="form-control-sm custom-select" name="category">
+                    <option>Select Category</option>
+                    {% for category in category %}
+                    <option value="{{category.pk}}">{{category.name}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="serviceoptions">Services</label>
+                  <select id="serviceoptions" class="form-control-sm custom-select" name="service_type">
+                    <option >Select Service</option>
+                    
+                   
+                  
+                  </select>
+                </div>
+              
+                {% comment %} <div class="form-group">
+                    <label for="udepartment">Catagorys</label>
+                    <select class="form-control" name="category" id="categories">
+                      {% for i in category %}
+                      <option value="{{i.pk}}"> {{i}}</option>
+                      {%endfor%}
+                     
+                    </select>
+                  </div>
+               
+              </div><!-- .col -->
+              
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label for="udepartment">Services</label>
+                  <select class="form-control" name="service_type" id="services">
+                   
+                    {% for j in service%}
+                    <option value="{{j.pk}}"> {{j}}</option>
+                    {%endfor%}
+                  </select>
+                </div>  {% endcomment %}
+             
+            </div>
+              <!-- .col -->
+              <div class="col-lg-12">
+                <div class="st-form-field">      
+                  <input type="text" id="name" name="party_name" required>
+                  <label>Full Name</label>
+                </div>
+              </div><!-- .col -->
+              <div class="col-lg-6">
+                <div class="st-form-field">      
+                  <input type="text" id="email" name="party_email" required>
+                  <label>Email Address</label>
+                </div>
+              </div><!-- .col -->
+           
+              <div class="col-lg-6">
+                <div class="st-form-field">      
+                  <input type="text" id="phone" name="party_mobile" required>
+                  <label>Phone</label>
+                </div>
+              </div><!-- .col -->
+              <div class="col-lg-12">
+                <div class="st-form-field">      
+                  <textarea cols="30" rows="10" id="msg" name="remark"required></textarea>
+                  <label>Your Message</label>
+                </div>
+              </div>
+              <div  class="form-group">
+              
+                <input type="hidden" value="{{request.user}}" id="phone" name="connector" required>
+             
+          {% comment %} <label for="id_connector">Connector</label>
+            <select  class="form-control" name="connector"  id="id_connector" required >
+              <option value="{{connect}}" selected></option>
+              {% for i in connect%}
+                <option value="{{i.id}}">
+                    {{i}}
+                </option>
+                {% endfor %}
+              </select>  {% endcomment %}
+          </div><!-- .col -->
+              <div class="col-lg-12">
+                <button type="submit" value="Login" class="ast-smooth-move" style="background:#644ca9;color:#abc61d;waight:700">Submit</button>
+                <div class="empty-space col-lg-b30"></div>
+              </div><!-- .col -->
+            </form>
+            <div class="st-height-b30 st-height-lg-b30"></div>
+          </div><!-- .col -->
+          <div class="col-lg-4">
+            <div class="st-contact-info">
+              <h2 class="st-contact-info-title">Corporate Office</h2>
+              <ul class="st-contact-info-list st-mp0">
+                <li><i class="fas fa-map-marker-alt"></i>503 Old Buffalo Street Northwest#205, New York-3087</li>
+                <li><i class="fas fa-phone-volume"></i>+00 222- 333 -7889</li>
+                <li><i class="fas fa-envelope"></i><a href="#">support@pragaticapitals.com</a></li>
+                <li><i class="fas fa-globe"></i><a href="#">www.pragaticapitals.com</a></li>
+              </ul>
+            </div>
+            <div class="st-height-b30 st-height-lg-b40"></div>
+            <div class="st-shidule">
+              <h2 class="st-shidule-title">Work Hours</h2>
+              <ul class="st-shidule-list st-mp0">
+                <li><span>Monday</span><span>8:00 AM – 4:30 PM</span></li>
+                <li><span>Tuesday</span><span>8:00 AM – 4:30 PM</span></li>
+                <li><span>Wednesday</span><span>8:00 AM – 4:30 PM</span></li>
+                <li><span>Thursday</span><span>8:00 AM – 4:30 PM</span></li>
+                <li><span>Friday</span><span>8:00 AM – 2:30 PM</span></li>
+                <li><span>Saturday</span><span>8:00 AM – 2:30 PM</span></li>
+                <li><span>Sunday</span><span>Closed</span></li>
+              </ul>
+            </div>
+            <div class="st-height-b30 st-height-lg-b30"></div>
+          </div>
+        </div>
+      </div>
+      <div class="st-height-b90 st-height-lg-b50"></div>
+    </section>
+    <!-- End Contact Section -->
+    <hr>
+    
+  </div>
+
+  {%endblock%}
+
+  {% block script %}
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+   
+  
+ // category & services
+
+ $("#categoryoptions").change(function () {
+  var cate_id = $(this).val();
+  
+  $.ajax({
+      url: "{% url 'web:ajax_load_states' %}",
+      data: {
+          'category': cate_id
+      },
+      success: function (data) {
+          $("#serviceoptions").html(
+              data);
+      }
+  });
+
+});
+
+  
+  
+  </script>
+  {% endblock script %}
+
+
+
+
+ 

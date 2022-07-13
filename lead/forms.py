@@ -1,6 +1,6 @@
 from dataclasses import fields
 from django.forms import ModelForm
-from .models import Category, Connector,Service_types,Lead
+from .models import Banner, Category, Connector,Service_types,Lead
 
 class Category_form(ModelForm):
     class Meta:
@@ -21,4 +21,10 @@ class Connector_form(ModelForm):
 class Lead_form(ModelForm):
     class Meta:
         model=Lead
+        fields='__all__'
+
+
+class Banner_form(ModelForm):
+    class Meta:
+        model=Banner
         fields='__all__'

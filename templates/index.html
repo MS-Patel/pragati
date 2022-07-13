@@ -3,12 +3,19 @@
 {% load static  %}
 {% block content %}
 
-<div class="row">
+<div class="row"> 
   <div class="col-md-12 grid-margin">
     <div class="row">
       <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-        <h3 class="font-weight-bold">Welcome Aamir</h3>
-        <h6 class="font-weight-normal mb-0">All systems are running smoothly! You have <span class="text-primary">3 unread alerts!</span></h6>
+        <form method="post">  {% csrf_token %}
+
+                {% if user.is_authenticated %}
+        <h3 class="font-weight-bold">Welcome  {{user.username}}</h3>
+        {%endif%}
+								
+                    <a href="{%url 'accounts:loginpage'%}">Logout</a>
+                  </form>
+                    <h6 class="font-weight-normal mb-0">All systems are running smoothly! You have <span class="text-primary">3 unread alerts!</span></h6>
       </div>
       <div class="col-12 col-xl-4">
        <div class="justify-content-end d-flex">
@@ -39,7 +46,7 @@
               <h2 class="mb-0 font-weight-normal"><i class="icon-sun mr-2"></i>31<sup>C</sup></h2>
             </div>
             <div class="ml-2">
-              <h4 class="location font-weight-normal">Bangalore</h4>
+              <h4 class="location font-weight-normal">Vadodara</h4>
               <h6 class="font-weight-normal">India</h6>
             </div>
           </div>
@@ -52,8 +59,8 @@
       <div class="col-md-6 mb-4 stretch-card transparent">
         <div class="card card-tale">
           <div class="card-body">
-            <p class="mb-4">Today’s Bookings</p>
-            <p class="fs-30 mb-2">4006</p>
+            <p class="mb-4">Total Lead</p>
+            <p class="fs-30 mb-2">{{lead_count}}</p>
             <p>10.00% (30 days)</p>
           </div>
         </div>
@@ -61,9 +68,9 @@
       <div class="col-md-6 mb-4 stretch-card transparent">
         <div class="card card-dark-blue">
           <div class="card-body">
-            <p class="mb-4">Total Bookings</p>
-            <p class="fs-30 mb-2">61344</p>
-            <p>22.00% (30 days)</p>
+            <p class="mb-4">Total Services</p>
+            <p class="fs-30 mb-2">{{service_count}}</p>
+            
           </div>
         </div>
       </div>
@@ -72,8 +79,8 @@
       <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
         <div class="card card-light-blue">
           <div class="card-body">
-            <p class="mb-4">Number of Meetings</p>
-            <p class="fs-30 mb-2">34040</p>
+            <p class="mb-4">Total Connectors</p>
+            <p class="fs-30 mb-2">{{connector_count}}</p>
             <p>2.00% (30 days)</p>
           </div>
         </div>
@@ -81,8 +88,9 @@
       <div class="col-md-6 stretch-card transparent">
         <div class="card card-light-danger">
           <div class="card-body">
-            <p class="mb-4">Number of Clients</p>
-            <p class="fs-30 mb-2">47033</p>
+            <p class="mb-4">Todays Lead</p>
+            
+            <p class="fs-30 mb-2" >{{today_lead.count}}</p>
             <p>0.22% (30 days)</p>
           </div>
         </div>
@@ -205,14 +213,14 @@
                                 <div class="progress-bar bg-danger" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
                               </div>
                             </td>
-                            <td><h5 class="font-weight-bold mb-0">793</h5></td>
+                            <td><h5 class="font-weight-bold mb-0">1000</h5></td>
                           </tr>
                         </table>
                       </div>
                     </div>
                     <div class="col-md-6 mt-3">
-                      <canvas id="north-america-chart"></canvas>
-                      <div id="north-america-legend"></div>
+                      <canvas id="pie-chart" ></canvas>
+                      <div id="pie-chart"></div>
                     </div>
                   </div>
                 </div>
@@ -543,10 +551,10 @@
       <div class="col-md-12 stretch-card grid-margin grid-margin-md-0">
         <div class="card data-icon-card-primary">
           <div class="card-body">
-            <p class="card-title text-white">Number of Meetings</p>                      
+            <p class="card-title text-white">Pending Leads</p>                      
             <div class="row">
               <div class="col-8 text-white">
-                <h3>34040</h3>
+                <h3>{{pending_leads}}</h3>
                 <p class="text-white font-weight-500 mb-0">The total number of sessions within the date range.It is calculated as the sum . </p>
               </div>
               <div class="col-4 background-icon">
@@ -619,3 +627,85 @@
 </div>
 
 {% endblock %}
+
+{%block script%}
+
+{% comment %} <script  THERE GOES CHART CDN LINK></script>
+<script  THERE GOES CHART CDN LINK></script> {% endcomment %}
+{% comment %} <script type="text/javascript">
+var ctx = document.getElementById('pie-chart');
+var dataArray = [{{chart_lead|safe}},{{chart_completed_lead|safe}},{{chart_close_lead|safe}},{{chart_cancel_lead|safe}}]
+var myChart = new Chart(ctx, {
+type: 'bar',
+    data: {
+        labels: ['PENDING', 'APPROVED', 'CLOSE', 'CANCEL'],
+        datasets: [{
+            label: 'Statistic on bug activity',
+            data: dataArray,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.4)',    // <----
+                'rgba(54, 162, 235, 0.2)',
+            ],
+    
+            borderColor: [
+                'rgba(255, 99, 132, 1)',     // <---
+                'rgba(54, 162, 235, 1)',
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+    });  {% endcomment %}
+
+
+    <script type="text/javascript">
+    var ctx = document.getElementById('pie-chart').getContext('2d');
+    var dataArray = [{{chart_lead|safe}},{{chart_completed_lead|safe}},{{chart_close_lead|safe}},{{chart_cancel_lead|safe}}]
+    var myChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: ['PENDING','APPROVED','CLOSE','CANCEL'],
+          datasets: [{ 
+              data:  dataArray,
+              borderColor:[
+                "#3cba9f",
+                "#ffa500",
+                "#c45850",
+                "#c48750",
+                "#c41250",
+              ],
+              backgroundColor: [
+                "rgb(255, 71, 71)",
+                "rgb(75, 73, 172)",
+                
+                "rgb(70, 195, 95)",
+                "rgb(58, 121, 235)",
+                
+                "rgb(36, 138, 253)",
+              ],
+              borderWidth:2,
+            }]
+        },
+      options: {
+        scales: {
+          xAxes: [{ 
+             display: false,
+          }],
+          yAxes: [{
+             display: false,
+          }],
+        }
+      },
+
+    });
+</script>
+
+{%endblock script%}

@@ -1,0 +1,240 @@
+{% extends 'website/webbase.html' %}
+
+{% load static  %}
+{% block content %}
+
+
+<div class="st-height-b80 st-height-lg-b80"></div>
+<!-- Start Hero Seciton -->
+<div class="st-slider st-style1 st-slider-animation1">
+  <div class="slick-container " data-autoplay="0" data-loop="1" data-speed="800" data-autoplay-timeout="1000" data-center="0" data-slides-per-view="1">
+    <div class="slick-wrapper">
+      <div class="slick-slide-in">
+        {%for i in banner %}
+        <div class="st-hero st-style1 st-size1 st-hero-overlay st-white">
+          <div class="st-hero-bg st-dynamic-bg st-bg" data-src="{{i.ban_img.url}}"></div>
+          <div class="container">
+            <div class="st-hero-text" style="float: right;">
+              <h2 class="st-hero-title">
+                <img src="{{i.ban_img.url}}" width="350px" style="padding-bottom:50px;" alt="">
+
+                {{i.ban_comments}}
+              </h2>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+      {%endfor%}
+    </div>
+
+  </div><!-- .slick-container -->
+
+ <div class="pagination st-style2 st-hidden"></div>
+  <!-- If dont need Pagination then add class .st-hidden -->
+
+  <div class="swipe-arrow st-style2">
+    <!-- If dont need navigation then add class .st-hidden -->
+ 
+    <div class="slick-arrow-left"><i class="fa fa-chevron-left"></i></div>
+    <div class="slick-arrow-right"><i class="fa fa-chevron-right"></i></div>
+  </div>
+
+</div><!-- .st-slider --> 
+<!-- End Hero Seciton -->
+
+<hr>
+
+<!-- Start About Seciton -->
+<section id="about" style="background-color: #d1c5df;">
+  <div class="st-height-b50 st-height-lg-b80"></div>
+  <div class="container">
+    <div class="st-section-heading st-style1">
+      <h2 class="st-section-heading-title">Who We Are</h2>
+      <div class="st-section-heading-seperator left wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.2s"></div>
+      <div class="st-section-heading-subtitle">Pragati Capitals and Services is an all-in-one service provider platform
+        by the people. </div>
+    </div>
+    <div class="st-height-b40 st-height-lg-b40"></div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="st-vertical-middle">
+          <div class="st-vertical-middle-in">
+            <div class="st-text-block st-style1">
+              <h3 class="st-text-block-subtitle">Reasons to count on us.</h3>
+              <div class="st-height-b10 st-height-lg-b10"></div>
+              <h2 class="st-text-block-title">We are a service destination run by a team of industry experts. </h2>
+              <div class="st-height-b20 st-height-lg-b20"></div>
+              <div class="st-text-block-text">We are a tight-knit team of industry experts focused on providing services
+                to the people who need help reaching the right vendors. We are a unique blend of business models
+                empowered by the people, for the people. A reference business — You too can be a part of it.</div>
+              <div class="st-height-b20 st-height-lg-b20"></div>
+              <ul class="st-list st-style1 st-mp0">
+                <li>A unique blend of the business model – Reference Based. </li>
+                <li>We are associated with more than 200+ vendors. </li>
+                <li>We provide more than 40+ services catering to all kinds of industries. </li>
+                <li>Even YOU can earn a second income through the Reference-based model. </li>
+              </ul>
+              <div class="st-height-b30 st-height-lg-b30"></div>
+            </div>
+          </div>
+        </div>
+        <div class="st-height-b0 st-height-lg-b30"></div>
+      </div><!-- .col -->
+      <div class="col-lg-6 wow fadeInRight" data-wow-duration="0.8s" data-wow-delay="0.2s">
+        <div class="st-hobble">
+          <div class="st-video-block st-style1 st-zoom st-hover-layer">
+            <div class="st-video-block-img st-zoom-in st-dynamic-bg"
+              data-src="{% static 'images/webimages/about-us.jpg' %}"></div>
+          </div>
+        </div>
+        <!-- <div class="st-height-b30 st-height-lg-b30"></div> -->
+      </div><!-- .col -->
+    </div>
+  </div>
+  <div class="st-height-b60 st-height-lg-b80"></div>
+</section>
+<!-- End About Seciton -->
+<hr>
+
+<!-- Start FunFact Aection -->
+<section class="st-dynamic-bg st-bg" data-src="{% static 'images/webimages/strip-banner.jpg'%}">
+  <div class="st-height-b120 st-height-lg-b80"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3">
+        <div class="st-funfact st-style1">
+          <div class="st-funfact-icon wow bounce" data-wow-duration="1s" data-wow-delay="0.7s"><i
+              class="flaticon-rate"></i></div>
+          <h2 class="st-funfact-number st-counter">700</h2>
+          <div class="st-funfact-title">Satisfied customers</div>
+        </div>
+        <div class="st-height-b30 st-height-lg-b30"></div>
+      </div><!-- .col -->
+
+      <div class="col-lg-3">
+        <div class="st-funfact st-style1">
+          <div class="st-funfact-icon wow bounce" data-wow-duration="1s" data-wow-delay="0.9s"><i
+              class="flaticon-code"></i></div>
+
+          <h2 class="st-funfact-number st-counter">{{service_count}}<h2>
+
+              <div class="st-funfact-title">our Services</div>
+        </div>
+        <div class="st-height-b30 st-height-lg-b30"></div>
+      </div>
+      <!-- .col -->
+      <div class="col-lg-3">
+        <div class="st-funfact st-style1">
+          <div class="st-funfact-icon wow bounce" data-wow-duration="1s" data-wow-delay="0.8s"><i
+              class="flaticon-laptop"></i></div>
+          <h2 class="st-funfact-number st-counter">100</h2>
+          <div class="st-funfact-title">Industries Experts</div>
+        </div>
+        <div class="st-height-b30 st-height-lg-b30"></div>
+      </div><!-- .col -->
+      <div class="col-lg-3">
+        <div class="st-funfact st-style1">
+          <div class="st-funfact-icon wow bounce" data-wow-duration="1s" data-wow-delay="1s"><i
+              class="flaticon-win"></i></div>
+          <h2 class="st-funfact-number st-counter">10</h2>
+          <div class="st-funfact-title">Experience Years</div>
+        </div>
+        <div class="st-height-b30 st-height-lg-b30"></div>
+      </div><!-- .col -->
+    </div>
+  </div>
+  <div class="st-height-b90 st-height-lg-b50"></div>
+</section>
+<!-- End FunFact Aection -->
+
+<hr>
+<!-- Start Skill Section -->
+<section class="logo-wm">
+  <div class="st-height-b80 st-height-lg-b50"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 wow fadeInLeft" data-wow-duration="0.8s" data-wow-delay="0.2s">
+        <div class="st-slider st-style1">
+          <div class="slick-container" data-autoplay="0" data-loop="1" data-speed="800" data-autoplay-timeout="1000"
+            data-center="0" data-slides-per-view="1">
+            <div class="slick-wrapper">
+              <div class="slick-slide-in">
+                <div class="st-gallery-img st-style1 st-dynamic-bg"
+                  data-src="{% static 'images/webimages/skill-01.jpg'%}"></div>
+              </div>
+              <div class="slick-slide-in">
+                <div class="st-gallery-img st-style1 st-dynamic-bg"
+                  data-src="{% static 'images/webimages/skill-02.jpg'%}"></div>
+              </div>
+              <div class="slick-slide-in">
+                <div class="st-gallery-img st-style1 st-dynamic-bg"
+                  data-src="{% static 'images/webimages/skill-03.jpg'%}"></div>
+              </div>
+            </div>
+          </div><!-- .slick-container -->
+          <div class="pagination st-style2"></div> <!-- If dont need Pagination then add class .st-hidden -->
+          <div class="swipe-arrow st-style1 st-hidden">
+            <!-- If dont need navigation then add class .st-hidden -->
+            <div class="slick-arrow-left"><i class="fa fa-angle-left"></i></div>
+            <div class="slick-arrow-right"><i class="fa fa-angle-right"></i></div>
+          </div>
+        </div><!-- .st-slider -->
+        <div class="st-height-b0 st-height-lg-b30"></div>
+      </div><!-- .col -->
+      <div class="col-lg-6">
+        <div class="st-vertical-middle">
+          <div class="st-vertical-middle-in">
+            <div class="st-skill-wrap">
+              <div class="st-skill-heading">
+                <h2 class="st-skill-title">Skills & Expertise</h2>
+                <div class="st-skill-subtitle">With more than ten years of expertise, we have carefully connected and
+                  chosen the best team of experts in the market, specifically for each service we provide. We are
+                  associated with more than 200+ vendors and provide 40+ services for the same. </div>
+                <div class="st-height-b20 st-height-lg-b20"></div>
+              </div><!-- .st-skill-heading -->
+              <div class="row">
+                {% for i in cat %}
+                <div class="col-lg-6">
+                  <div class="st-iconbox st-style1">
+                    <div class="st-iconbox-icon"><a href="{% url 'web:services'%}#{{i.cat_id}}"><i
+                          class="{{i.image}}fa-1x"> </i></a></div>
+                    <h3 class="st-iconbox-title"><a href="{% url 'web:services'%}#{{i.cat_id}}">{{i.name}}</a></h3>
+                  </div>
+                </div>
+                {% endfor %}
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- .col -->
+    </div>
+  </div>
+  <div class="st-height-b90 st-height-lg-b60"></div>
+</section>
+<!-- End Skill Section -->
+<hr>
+<!-- Start CallToAction 
+  <section class="st-cta-section st-dynamic-bg st-bg st-gray-bg" data-src="images/webimages/strip-banner-bottom.jpg">
+    <div class="st-height-b120 st-height-lg-b80"></div>
+    <div class="container">
+      <div class="st-cta st-style1 text-center">
+        <h2 class="st-cta-title">Build your Perfect Template Now!</h2>
+        <div class="st-cta-subtitle">If you want to create a new website for your business, do not hesitate to contact us today. We have <br>created you to provide all types of services on the website.</div>
+      </div>
+    </div>
+    <div class="st-height-b120 st-height-lg-b80"></div>
+  </section>
+   End CallToAction -->
+
+
+
+
+</div>
+{%endblock%}
+

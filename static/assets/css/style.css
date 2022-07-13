@@ -601,16 +601,18 @@ hr {
       .st-nav .st-nav-list > li:last-child {
         margin-right: 0; }
       .st-nav .st-nav-list > li > a {
-        padding: 12px 20px;
+        padding: 3px 17px;
         display: inline-block;
         font-weight: 700;
-        background-color: #abc61d;
-        border-radius: 7px;
-        color: #fff;
+        /* background-color: #abc61d; */
+        /* border: solid black 1px; */
+       
+        color: #abc61d;;
       }
       .st-nav .st-nav-list > li > a.hover {
         background-color: #644ca9;
-               color: #fff;
+        
+        color: #fff;
       }
       .st-nav .st-nav-list > li > ul {
         left: 0;
@@ -1460,7 +1462,9 @@ hr {
   padding: 2px 0px 2px;
   border-radius: 10px;
   transition: all 0.4s ease;
-  margin: 10px 0px; }
+  margin: 10px 0px; 
+  /* padding: 15px 40px; */
+}
   .st-iconbox.st-style1 .st-iconbox-icon {
     display: flex;
     align-items: center;
@@ -1473,7 +1477,7 @@ hr {
     border: 1px solid #644ca9;
     font-size: 50px;
     margin-bottom: 20px;
-    margin-top: 20px;
+    margin-top: 10px;
     transition: all 0.4s ease; }
   .st-iconbox.st-style1 .st-iconbox-title {
     font-size: 16px;

@@ -18,19 +18,29 @@
         {% csrf_token %}
         <div class="form-group">
           <label for="id_lead_code">Lead Code</label>
-          <input type="text" class="form-control" name="lead_code" value="{{ in_num }}" id="id_lead_code">
+          <input type="text" class="form-control" name="lead_code" value="{{ in_num }}" id="id_lead_code" readonly>
         </div>
+        
         <div class="form-group">
-          <label for="id_service_type">Services</label>
-          <select class="form-control" name="service_type"  id="id_connector" required>
-            <option value="{{service}}" selected></option>
-            {% for i in service%}
-              <option value="{{i.id}}">
-                  {{i}}
-              </option>
-              {% endfor %}
-            </select> 
-          </div>
+          <label for="categoryoptions">Category</label>
+          <select id="categoryoptions" class="form-control-sm custom-select" name="category">
+            <option>Select Category</option>
+            {% for category in category %}
+            <option value="{{category.pk}}">{{category.name}}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+      
+        <div class="form-group">
+          <label for="serviceoptions">Services</label>
+          <select id="serviceoptions" class="form-control-sm custom-select" name="service_type">
+            <option >Select Service</option>
+            
+           
+          
+          </select>
+        </div>
         <div class="form-group">
           <label for="id_party_name">Name</label>
           <input type="text" class="form-control" name="party_name" id="id_party_name" autocomplete="off"  placeholder="Name" required>
@@ -69,3 +79,30 @@
   </div>
 </div>
 {%endblock%}
+
+{% block script %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+ 
+// category & services
+
+$("#categoryoptions").change(function () {
+var cate_id = $(this).val();
+
+$.ajax({
+    url: "{% url 'web:ajax_load_states' %}",
+    data: {
+        'category': cate_id
+    },
+    success: function (data) {
+        $("#serviceoptions").html(
+            data);
+    }
+});
+
+});
+
+
+</script>
+{% endblock script %}

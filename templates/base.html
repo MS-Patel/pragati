@@ -304,20 +304,7 @@
             </a>
           </li>
                           {% comment %} Master Nav {% endcomment %}
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#master" aria-expanded="false" aria-controls="master">
-              <i class="icon-layout menu-icon"></i>
-              <span class="menu-title">Master</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="master">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{% url 'lead:view_cat' %}">Category</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{% url 'lead:view_ser_type' %}">Srvice Types</a></li>
-               
-              </ul>
-            </div>
-          </li>
+          
                     {% comment %} Lead{% endcomment %}
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#lead" aria-expanded="false" aria-controls="lead">
@@ -327,7 +314,12 @@
             </a>
             <div class="collapse" id="lead">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{% url 'lead:view_lead_reg' %}">View Lead</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{% url 'lead:add_lead_reg' %}">Create Lead</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{% url 'lead:view_approved_lead_reg' %}">Approved Lead</a></li>
+                
+                <li class="nav-item"> <a class="nav-link" href="{% url 'lead:view_pending_lead_reg' %}">Pending Lead</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{% url 'lead:view_close_lead_reg' %}">Close Lead</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{% url 'lead:view_cancel_lead_reg' %}">Cancel Lead</a></li>
               </ul>
             </div>
           </li>
@@ -351,26 +343,28 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'lead:report' %}">
               <i class="icon-paper menu-icon"></i>
-              <span class="menu-title">Reports</span>
+              <span class="menu-title">Reports</span><i class="menu-arrow"></i>
             </a>
           </li>
 
                 {% comment %} User Create{% endcomment %}
           
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-              <i class="icon-head menu-icon"></i>
-              <span class="menu-title">User Pages</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="auth">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{% url 'lead:login' %}"> Login </a></li>
-                <li class="nav-item"> <a class="nav-link" href="{% url 'lead:registration' %}"> Register </a></li>
-              </ul>
-            </div>
-          </li>
-         
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="collapse" href="#master" aria-expanded="false" aria-controls="master">
+                    <i class="icon-layout menu-icon"></i>
+                    <span class="menu-title">Master</span>
+                    <i class="menu-arrow"></i>
+                  </a>
+                  <div class="collapse" id="master">
+                    <ul class="nav flex-column sub-menu">
+                      <li class="nav-item"> <a class="nav-link" href="{% url 'lead:view_cat' %}">Category</a></li>
+                      <li class="nav-item"> <a class="nav-link" href="{% url 'lead:view_ser_type' %}">Srvice Types</a></li>
+                      <li class="nav-item"> <a class="nav-link" href="{% url 'lead:view_reg' %}">User Details</a></li>
+                      <li class="nav-item"> <a class="nav-link" href="{% url 'lead:view_banner' %}">Banner</a></li>
+                     
+                    </ul>
+                  </div>
+                </li>
           
         </ul>
       </nav>
@@ -432,7 +426,9 @@
   <script src="{%static 'js/file-upload.js'%}"></script>
   <script src="{%static  'js/dashboard.js'%}"></script>
   <script src="{%static  'js/Chart.roundedBarCharts.js'%}"></script>
-  
+  {% block script%}
+
+{%endblock script%}
   <!-- End custom js for this page-->
 </body>
 

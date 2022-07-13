@@ -1,0 +1,41 @@
+
+{% extends 'base.html' %}
+
+{% load static  %}
+{% block content %}
+{%load crispy_forms_filters%}
+
+
+<div class="col-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Bannner</h4>
+      <p class="card-description">
+        Edit Banner
+      </p>
+      <form class="forms-sample" action="{% url 'lead:view_banner' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="id_ban_code">Banner Code</label>
+          <input type="text" class="form-control" name="ban_code" value="{{ editbanner.ban_code }}" id="id_ban_code" readonly placeholder="Name">
+        </div>
+        
+        <div class="form-group">
+          <label for="id_con_branch">Banner Comments</label>
+          <input type="text" name="ban_comments" value="{{editbanner.ban_comments }}" readonly class="form-control" id="id_con_branch" placeholder="Branch Name">
+        </div>
+        <div class="form-group">
+          <label>Image upload</label>
+          {% if editbanner.ban_img %}
+      <a href="/media/{{editbanner.ban_img}}" target="_blank">View Images</a>
+      {% endif %}
+         
+        </div>
+        
+        <button type="submit" class="btn btn-primary mr-2">Submit</button>
+        <button class="btn btn-light">Cancel</button>
+      </form>
+    </div>
+  </div>
+</div>
+{%endblock%}

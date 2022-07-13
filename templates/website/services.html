@@ -1,0 +1,70 @@
+{% extends 'website/webbase.html' %}
+
+{% load static  %}
+{% block content %}
+
+        <div class="st-height-b80 st-height-lg-b80"></div>
+        <!-- Start FunFact Aection -->
+        <section class="st-dynamic-bg st-bg" data-src="{% static 'images/webimages/strip-banner.jpg'%}">
+            <div class="st-height-b100 st-height-lg-b50"></div>
+            <div class="container">
+                <div class="st-cta st-style1 text-center">
+                    <h2 class="st-cta-title">Services We Offers </h2>
+                    <div class="st-cta-subtitle">A diverse range of services specially curated for the general public. </b>
+                    </div>
+                </div>
+            </div>
+            <div class="st-height-b30 st-height-lg-b50"></div>
+        </section>
+        <!-- End FunFact Aection -->
+
+          
+        
+        <!-- Start Pricing Table -->
+        <section id="price" style="background-color: #f1f1f1;">
+           
+            <div class="container">
+                <div class="st-section-heading st-style1">
+                    <h2 class="st-section-heading-title"></h2>
+                   
+                    <div class="st-section-heading-subtitle"></div>
+                </div>
+                <div class="st-height-b40 st-height-lg-b40"></div>
+            </div>
+            <div class="container">
+                <div class="row" style="justify-content: center;">
+                    {% for i in cat %}
+                <div id="{{i.cat_id}}" class="col-lg-4 mb-4">
+                    <div class="st-pricing-table st-style1">
+                        <div class="st-pricing-head">
+                            <div class="st-pricing-head-in">
+                                <i class="{{i.image}}"></i>
+                            </div>
+                        </div><!-- .st-pricing-head -->
+                            <div  class="st-pricing-feature">
+                                <h2 class="st-pricing-feature-title">{{i}}</h2>
+                                <ul class="st-widget-list">
+                                    {% for j in i.services.all %}
+                                    <li > {{j}}</li>
+                                    {% endfor %}
+                                  </ul>     
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}                          
+                    </div>
+            </div>
+            <div class="st-height-b35 st-height-lg-b35"></div>
+          
+            </div>
+           
+        </section>
+        <!-- End Pricing Table -->
+
+    </div>
+
+
+
+
+
+{%endblock%}

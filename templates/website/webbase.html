@@ -1,0 +1,221 @@
+{% load static  %}
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+  <!-- Meta Tags -->
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="">
+  <!-- Page Title -->
+  <title>Welcome to Pragati Capital & Services, Vadodara.</title>
+  <!-- Favicon Icon -->
+  <link rel="icon" href="{%static 'images/webimages/favicon.gif' %}" />
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="{%static 'assets/css/bootstrap.min.css' %}" />
+  <link rel="stylesheet" href="{%static 'assets/css/fontawesome.css' %}" />
+  <link rel="stylesheet" href="{%static 'assets/css/flaticon.css' %}" />
+  <link rel="stylesheet" href="{%static 'assets/css/slick.css' %}" />
+  <link rel="stylesheet" href="{%static 'assets/css/lightgallery.min.css' %}" />
+  <link rel="stylesheet" href="{%static 'assets/css/animate.css' %}" />
+  <link rel="stylesheet" href="{%static 'assets/css/style.css' %}" />
+  <link rel="stylesheet" href="{%static 'assets/css/elements/hero.css' %}" />
+ 
+  <script src="https://kit.fontawesome.com/be73d4c488.js"  crossorigin="anonymous"></script>
+ <style>
+  .active{
+
+    background: #644ca9;
+  }
+ </style>
+
+</head>
+
+<body class="st-blue">
+  <!-- Start Header Section -->
+  <header class="st-site-header st-style1 st-sticky-header">
+    <div class="st-top-header">
+      <div class="container">
+        <div class="st-top-header-in">
+          <ul class="st-top-header-list">
+            <li><i class="fas fa-envelope"></i>Email: <a href="{% static '#' %}">info@gmail.com</a></li>
+            <li><i class="fas fa-phone-volume"></i>Contact: <a href="{% static '#' %}">2222-333-7889</a></li>
+            <li><i class="fas fa-clock"></i>Work time: <a href="{% static '#' %}">9:00AM - 18:00PM</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="st-main-header">
+      <div class="container">
+        <div class="st-main-header-in">
+          <div class="st-main-header-left">
+            <a class="st-site-branding st-white-logo" href="{% url 'web:webhome' %}"><img src="{% static 'images/webimages/logo-header.jpg'%}" alt="pcs-logo"></a>
+            <a class="st-site-branding st-dark-logo" href="{% url 'web:webhome' %}"><img src="{% static 'images/webimages/logo-header.jpg'%}" alt="pcs-logo"></a>
+          </div>
+          <div class="st-main-header-right">
+            <div class="st-nav">
+              {% with request.resolver_match.url_name as url_name %}
+              <ul class="st-nav-list st-onepage-nav">
+                <li class="{% if url_name == 'webhome' %}active{% endif %}"><a href="{% url 'web:webhome' %}" class="st-smooth-move">Home</a></li>
+                <li class="{% if url_name == 'about' %}active{% endif %}"><a href="{% url 'web:about' %}" class="st-smooth-move">About us</a></li>   
+                <li class="{% if url_name == 'services' %}active{% endif %}"><a href="{% url 'web:services' %}" class="ast-smooth-move">Services</a></li>       
+                <li class="{% if url_name == 'contact' %}active{% endif %}"><a href="{% url 'web:contact' %}" class="ast-smooth-move">Contact us</a></li>
+                <li class="{% if url_name == 'login' %}active{% endif %}"><a href="{% url 'accounts:loginpage' %}" class="ast-smooth-move">Login</a></li>
+              </ul>
+              {% endwith %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- End Header Section -->
+
+  <div class="st-content">
+  
+
+
+    {% block content %}
+
+
+
+
+
+
+
+    {% endblock content %}
+
+  </div>
+
+
+
+
+ 
+
+
+  <!-- Start Footer -->
+  <footer class="st-site-footer">
+    <div class="st-main-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3">
+            <div class="st-footer-widget">
+              <div class="st-text-field">
+                <img src="{% static 'images/webimages/logo-footer.png'%}" alt="PCS" class="st-white-logo">
+                <img src="{% static 'images/webimages/logo-footer.png'%}" alt="PCS" class="st-dark-logo">
+                <div class="st-height-b25 st-height-lg-b25"></div>
+                <div class="st-footer-text">We provide all kinds of services to help solve peoples' problems, from loans to government work, you need help – think PRAGATI CAPITALS.</div>
+                <div class="st-height-b25 st-height-lg-b25"></div>
+                <ul class="st-social-btn st-style1 st-mp0">
+                  <li><a href="{% static '#'%}"><i class="fab fa-facebook-square"></i></a></li>
+                  <li><a href="{% static '#'%}"><i class="fab fa-linkedin"></i></a></li>
+                  <li><a href="{% static '#'%}"><i class="fab fa-pinterest-square"></i></a></li>
+                </ul>
+              </div>
+            </div>
+          </div><!-- .col -->
+          <div class="col-lg-3">
+            <div class="st-footer-widget">
+              <h2 class="st-footer-widget-title">Our services</h2>
+              <ul class="st-footer-widget-nav st-mp0">
+                {% for i in cat %}
+             
+                <li><a href="{% url 'web:services'%}#{{i.cat_id}}"><i class="fas fa-chevron-right"></i> {{i.name}}</a></li>
+               {%endfor%}
+               
+              </ul>
+            </div>
+          </div><!-- .col -->
+          <div class="col-lg-3">
+            <div class="st-footer-widget">
+              <h2 class="st-footer-widget-title">Company Info</h2>
+              <ul class="st-footer-widget-nav st-mp0">
+                <li><a href="{% url 'web:about' %}" ><i class="fas fa-chevron-right"></i>About Us</a></li>
+                <li><a href="{% url 'web:services' %}" ><i class="fas fa-chevron-right"></i>Our Services</a></li>
+                <li><a href="{% url 'web:contact' %}"><i class="fas fa-chevron-right"></i>Contact</a></li>
+              </ul>
+            </div>
+          </div><!-- .col -->
+          <div class="col-lg-3">
+            <div class="st-footer-widget">
+              <h2 class="st-footer-widget-title">Useful Links</h2>
+              <ul class="st-post-widget-list st-mp0">
+                <li>
+                  <div class="st-post st-style1">
+                    <a href="{% static '#'%}" class="st-post-thumb st-zoom"><img src="{% static 'https://via.placeholder.com/80x70'%}" alt="post1" class="st-zoom-in"></a>
+                    <div class="st-post-info">
+                      <ul class="st-categories st-style1 st-mp0">
+                        <li><a href="{% static '#'%}">Lifestyle</a></li>
+                      </ul>
+                      <h2 class="st-post-title"><a href="{% static 'blog-details.html'%}">Business Consultancy</a></h2>
+                      <div class="st-post-date">1 Hours Ago</div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="st-post st-style1">
+                    <a href="{% static '#'%}" class="st-post-thumb st-zoom"><img src="{% static 'https://via.placeholder.com/80x70'%}" alt="post2" class="st-zoom-in"></a>
+                    <div class="st-post-info">
+                      <ul class="st-categories st-style1 st-mp0">
+                        <li><a href="{% static '#'%}">Lifestyle</a></li>
+                      </ul>
+                      <h2 class="st-post-title"><a href="{% static 'blog-details.html'%}">Accessible New Design</a></h2>
+                      <div class="st-post-date">3 Hours Ago</div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div><!-- .col -->
+        </div>
+      </div>
+    </div>
+    <div class="st-copyright-wrap">
+      <div class="container">
+        <div class="st-copyright-in">
+          <div class="st-left-copyright">
+            <div class="st-copyright-text">Copyright  2022. Design by <a href="{% static 'https://www.prathasystech.in/'%}" target="_blank">PSPL</a> </div>
+          </div>
+          <div class="st-right-copyright">
+            <div id="st-backtotop"><i class="fas fa-angle-up"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- End Footer -->
+  <!-- Start Video Popup -->
+  <div class="st-video-popup">
+    <div class="st-video-popup-overlay"></div>
+    <div class="st-video-popup-content">
+      <div class="st-video-popup-layer"></div>
+      <div class="st-video-popup-container">
+        <div class="st-video-popup-align">
+          <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" src="about:blank"></iframe>
+          </div>
+        </div>
+        <div class="st-video-popup-close"></div>
+      </div>
+    </div>
+  </div>
+  <!-- End Video Popup -->
+
+  <!-- Scripts -->
+  <script src="{% static 'assets/js/vendor/modernizr-3.5.0.min.js'%}"></script>
+  <script src="{% static 'assets/js/vendor/jquery-1.12.4.min.js'%}"></script>
+  <script src="{% static 'assets/js/isotope.pkg.min.js'%}"></script>
+  <script src="{% static 'assets/js/jquery.slick.min.js'%}"></script>
+  <script src="{% static 'assets/js/mailchimp.min.js'%}"></script>
+  <script src="{% static 'assets/js/counter.min.js'%}"></script>
+  <script src="{% static 'assets/js/lightgallery.min.js'%}"></script>
+  <script src="{% static 'assets/js/wow.min.js'%}"></script>
+  <script src="{% static 'assets/js/textRotate.min.js'%}"></script>
+  <script src="{% static 'assets/js/main.js'%}"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+  <script src="{%static  'js/owl-carousel.js'%}"></script>
+
+
+
+
+</html>

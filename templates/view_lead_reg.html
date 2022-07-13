@@ -15,7 +15,11 @@
         <button type="submit" class="btn btn-success">Add New Lead</button></a>
     </div>
     <p class="card-description">
-        View Leads
+        View Leads <h5 style="color:green">{% if messages %}
+          {% for message in messages %}
+              <div>{{ message }}</div>
+          {% endfor %}
+      {% endif %}</h5>
        </p>
         <div class="table-responsive">
           <table class="table table-hover">
@@ -46,7 +50,7 @@
             <td>{{i.party_address}}</td>
             <td>{{i.remark}}</td>
             <td>{{i.connector}}</td>
-            <td><label class="badge badge-warning">In progress</label></td>
+            <td>{{i.status}}</td>
             <td><a href="{% url 'lead:edit_lead_reg' i.pk  %}">Edit</a></td>
                 
                

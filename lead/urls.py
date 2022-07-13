@@ -1,21 +1,17 @@
 from django.urls import path
 from .import views
-
+from django.contrib.auth import views as auth_views
 app_name="lead"
 
 urlpatterns = [
 
 
-    ###################  Website #######################
-    path('',views.webhome,name="webhome"),
-    path('about',views.about,name="about"),
-    path('contact',views.contact,name="contact"),
-    
     ###################  Admin #######################
     path('home',views.home,name="home"),
-    path('lead/login',views.login,name="login"),
-    path('lead/registration',views.registration,name="registration"),
+    # path('lead/login',views.login,name="login"),
+    # path('lead/registration',views.registration,name="registration"),
     path('lead/report',views.report,name="report"),
+
 
     ###################  Category #######################
     
@@ -34,10 +30,12 @@ urlpatterns = [
     path('lead/edit_ser_type/<int:id>',views.edit_ser_type,name="edit_ser_type"),
     path('lead/update_ser_type/<int:id>',views.update_ser_type,name="update_ser_type"),
 
-    ###################  Party Details #######################
-
-   
+    ###################  Lead Details #######################
     path('lead/view_lead_reg',views.view_lead_reg,name="view_lead_reg"),
+    path('lead/view_approved_lead_reg',views.view_approved_lead_reg,name="view_approved_lead_reg"),
+    path('lead/view_pending_lead_reg',views.view_pending_lead_reg,name="view_pending_lead_reg"),
+    path('lead/view_cancel_lead_reg',views.view_cancel_lead_reg,name="view_cancel_lead_reg"),
+    path('lead/view_close_lead_reg',views.view_close_lead_reg,name="view_close_lead_reg"),
     path('lead/add_lead_reg',views.add_lead_reg,name="add_lead_reg"),
     path('lead/create_lead_reg',views.create_lead_reg,name="create_lead_reg"),
     path('lead/edit_lead_reg/<int:id>',views.edit_lead_reg,name="edit_lead_reg"),
@@ -53,5 +51,19 @@ urlpatterns = [
     path('lead/edit_con_reg/<int:id>',views.edit_con_reg,name="edit_con_reg"),
     path('lead/show_con_reg/<int:id>',views.show_con_reg,name="show_con_reg"),
     path('lead/update_con_reg<int:id>',views.update_con_reg,name="update_con_reg"),
+
+###################  Banner Details #######################
+
+    
+    
+    path('lead/view_banner',views.view_banner,name="view_banner"),
+    path('lead/add_banner',views.add_banner,name="add_banner"),
+    path('lead/create_banner',views.create_banner,name="create_banner"),
+    path('lead/edit_banner/<int:id>',views.edit_banner,name="edit_banner"),
+    path('lead/show_banner/<int:id>',views.show_banner,name="show_banner"),
+    path('lead/update_banner<int:id>',views.update_banner,name="update_banner"),
+
+    ###################  Registration Details #######################
+    path('lead/view_reg',views.view_reg,name="view_reg"),
 
 ]

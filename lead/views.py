@@ -1,30 +1,61 @@
+from datetime import date, datetime
+from hmac import new
 import os
+from re import M
+from this import d
+from tkinter import Y
 from django.shortcuts import render,redirect
 from fileinput import filename
 from django.core.files.storage import FileSystemStorage
 from django.contrib import messages
-from lead.models import Category, Connector, Lead, Service_types
-from .forms import Category_form,Service_types_form,Connector_form,Lead_form
+from accounts.models import Register
+from lead.models import Banner, Category, Connector, Lead, Service_types
+from .forms import Banner_form, Category_form,Service_types_form,Connector_form,Lead_form
+from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
+import requests 
+from django.db.models import Count
+from datetime import datetime
 
 
-# Create your views here.
-def webhome(request):
-    return render(request,'webindex.html')
-
-def about(request):
-    return render(request,'about.html')
-
-def contact(request):
-    return render(request,'contact.html')
 
 def home(request):
-    return render(request,'index.html')
+    service=Service_types.objects.all()
+    service_count=service.count()
 
-def login(request):
-    return render(request,'login.html')
+    lead=Lead.objects.all()
+    lead_count=lead.count()
+   
+    today_lead= Lead.objects.values('lead_date').annotate(count=Count('lead_date')).values('count').order_by('lead_date').last()
+
+    pending_leads=Lead.objects.filter(status='PENDING').count()
+
+   
+
+    connector=Connector.objects.all()
+    connector_count=connector.count()
+
+
+    
+   
+    chart_lead= Lead.objects.filter(status='PENDING').count()
+    chart_completed_lead= Lead.objects.filter(status='APPROVED').count()
+    chart_close_lead= Lead.objects.filter(status='CLOSE').count()
+    chart_cancel_lead= Lead.objects.filter(status='CANCEL').count()
+
+   
+
+
+    return render(request,'index.html',{'chart_close_lead':chart_close_lead,'chart_cancel_lead':chart_cancel_lead,'chart_lead':chart_lead,'chart_completed_lead':chart_completed_lead,'pending_leads':pending_leads,'today_lead':today_lead,'service_count':service_count,'lead_count':lead_count,'lead':lead,'connector_count':connector_count})
+
+# def login(request):
+#     return render(request,'login.html')
   
-def registration(request):
-    return render(request,'register.html')
+# def registration(request):
+#     return render(request,'register.html')
+
+
+
 
 def report(request):
     return render(request,'report.html')
@@ -54,7 +85,6 @@ def create_cat(request):
 def edit_cat(request,id):
     editcat=Category.objects.get(id=id)
     return render(request,'edit_cat.html',{'editcat':editcat})
-
 
 def update_cat(request,id):
     if request.method == 'POST':
@@ -111,10 +141,32 @@ def update_ser_type(request,id):
 ##################### Lead #######################
 
 def view_lead_reg(request):
-    cat=Lead.objects.all()
+    
+    cat= Lead.objects.all()
+    return render(request,'view_lead_reg.html',{'view_lead_reg':cat})
+
+def view_pending_lead_reg(request):
+    
+    cat= Lead.objects.filter(status='PENDING')
+    return render(request,'view_lead_reg.html',{'view_lead_reg':cat})
+
+def view_approved_lead_reg(request):
+    
+    cat= Lead.objects.filter(status='APPROVED')
+    return render(request,'view_lead_reg.html',{'view_lead_reg':cat})
+
+def view_close_lead_reg(request):
+    
+    cat= Lead.objects.filter(status='CLOSE')
+    return render(request,'view_lead_reg.html',{'view_lead_reg':cat})
+
+def view_cancel_lead_reg(request):
+    
+    cat= Lead.objects.filter(status='CANCEL')
     return render(request,'view_lead_reg.html',{'view_lead_reg':cat})
 
 def add_lead_reg(request):
+    category=Category.objects.all()
     cat=Lead_form()
     con=Lead.objects.all()
     connector = Lead.objects.last()
@@ -122,9 +174,9 @@ def add_lead_reg(request):
         no='LED/2223/' + str(int(connector.lead_code[9:]) + 1)
     else:
         no='LED/2223/1'
-    service=Service_types.objects.all()
+   # service=Service_types.objects.all()
     connect=Connector.objects.all()
-    return render(request,'add_lead_reg.html',{'add_lead_reg':cat,'in_num':no,'con':con,'connect':connect,'service':service})
+    return render(request,'add_lead_reg.html',{'add_lead_reg':cat,'in_num':no,'con':con,'connect':connect,'category':category})
 
 
 def create_lead_reg(request):
@@ -134,8 +186,18 @@ def create_lead_reg(request):
         
         lead_code = request.POST.get("lead_code")
 
-        service_type = request.POST.get("service_type")
-        ser_type = Service_types.objects.get(id=service_type)
+        if request.POST.get("category"):
+            category = Category.objects.get(id=request.POST.get("category"))
+        else:
+            return HttpResponse("please enter category")
+
+        if request.POST.get("service_type"):
+            service_type = Service_types.objects.get(id=request.POST.get("service_type"))
+        else:
+            return HttpResponse("please enter category")
+
+        # service_type = request.POST.get("service_type")
+        # ser_type = Service_types.objects.get(id=service_type)
 
         party_name = request.POST.get("party_name")
         party_mobile = request.POST.get("party_mobile")
@@ -143,16 +205,17 @@ def create_lead_reg(request):
         party_address = request.POST.get("party_address")
         remark = request.POST.get("remark")
     
-        connector = request.POST.get("connector")
-        conn = Connector.objects.get(id=connector)
+        #connector = request.POST.get("connector")
+        conn = Connector.objects.get(id=1)
 
-        Lead.objects.get_or_create(lead_code=lead_code,party_name=party_name,party_mobile=party_mobile,party_email=party_email,party_address=party_address,remark=remark,service_type=ser_type,connector=conn)   
-
+        Lead.objects.get_or_create(category=category,service_type=service_type,lead_code=lead_code,party_name=party_name,party_mobile=party_mobile,party_email=party_email,party_address=party_address,remark=remark,connector=conn)   
+        messages.success(request, 'Thank You !Your Lead Save Successfully........')
         return redirect('lead:view_lead_reg')
-     
+
 
 def edit_lead_reg(request,id):
     editleadreg=Lead.objects.get(id=id)
+
     ser_type = Service_types.objects.all()
     conn = Connector.objects.all()
     return render(request,'edit_lead_reg.html',{'editleadreg':editleadreg,'ser_type':ser_type,'conn':conn})
@@ -260,3 +323,75 @@ def update_con_reg(request,id):
 
     context = {'user':user}
     return render(request,'edit_con_reg.html',context)
+
+
+################### Registrartion Details #######################
+def view_reg(request):
+    cat=Register.objects.all()
+    return render(request,'view_reg.html',{'view_reg':cat})
+
+######################## Banners Update ############################
+
+def view_banner(request):
+    banner=Banner.objects.all()
+    return render(request,'view_banner.html',{'view_banner':banner})
+
+def add_banner(request):
+    category=Category.objects.all()
+    ban=Banner_form()
+    banne=Banner.objects.all()
+    connector = Banner.objects.last()
+    if connector:
+        no='BAN/2223/' + str(int(connector.ban_code[9:]) + 1)
+    else:
+        no='BAN/2223/1'
+    connect=Connector.objects.all()
+    return render(request,'add_banner.html',{'add_banner':ban,'in_num':no,'banne':banne,'connect':connect,'category':category})
+
+
+def create_banner(request):
+
+    if request.method == 'POST':
+
+        
+        ban_code = request.POST.get("ban_code")
+        
+        ban_img = request.FILES.get('ban_img')
+        ban_comments = request.POST.get("ban_comments")
+        
+
+
+        Banner.objects.get_or_create(ban_code=ban_code,ban_img=ban_img,ban_comments=ban_comments)   
+        
+        return redirect('lead:view_banner')
+     
+
+def edit_banner(request,id):
+    editbanner=Banner.objects.get(id=id)
+    return render(request,'edit_banner.html',{'editbanner':editbanner})
+
+def show_banner(request,id):
+    editbanner=Banner.objects.get(id=id)
+    return render(request,'show_banner.html',{'editbanner':editbanner})
+
+
+def update_banner(request,id):
+    user=Banner.objects.get(id=id)   
+
+    if request.method == 'POST':
+        if len(request.FILES) != 0:
+            if len(user.ban_img) > 0:
+                os.remove(user.ban_img.path)
+            user.ban_img=request.FILES['ban_img']
+        user.ban_code = request.POST.get("ban_code")
+        user.ban_comments = request.POST.get("ban_comments")
+       
+
+        user.save()
+        # messages.success(request, "Banner update")
+        return redirect('lead:view_banner')
+
+    context = {'user':user}
+    return render(request,'edit_banner.html',context)    
+
+
