@@ -1,0 +1,84 @@
+
+{% extends 'base.html' %}
+
+{% load static  %}
+{% block content %}
+
+
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+        <h4 class="card-title">Revenue</h4>
+        <a href="{% url 'lead:add_lead_reg' %}">
+        <button type="submit" class="btn btn-success">Add Revenue</button></a>
+    </div>
+    <p class="card-description">
+        View Revenue<h5 style="color:green">{% if messages %}
+          {% for message in messages %}
+              <div>{{ message }}</div>
+          {% endfor %}
+      {% endif %}</h5>
+       </p>
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th></th>       
+                <th>Lead</th>
+                <th>Connector</th>
+                <th>Paybal Revenue</th>
+                <th>Paid Revenue</th>
+                <th>Revenue Status</th>
+                <th></th>
+              </tr>
+            
+            </thead>
+            <tbody>
+              <tr>
+                {% for i in revenue%}
+                <td>{{forloop.counter}}</td>
+            <td>{{i.lead_code}}</td>
+           
+            <td>{{i.connector.con_code}}</td>
+           
+         <td>{{i.con_paybal_revenue}}</td>
+         <td>{{i.con_paid_revenue}}</td>
+         {% if i.con_revenue_status == "PENDING" %}
+         <td class="font-weight-medium">
+         <div class="badge badge-warning">{{i.con_revenue_status}}</div>
+         </td>
+
+         {% elif  i.con_revenue_status == "PAID" %}
+         <td class="font-weight-medium">
+          <div class="badge badge-success">{{i.con_revenue_status}}</div>
+          </td>
+
+          {% else %}
+          <td class="font-weight-medium">
+            <div class="badge badge-danger">{{i.con_revenue_status}}</div>
+            </td>
+            {%endif%}
+         {% comment %} {% if i.con_revenue == 0%}
+         <td class="font-weight-medium">
+             <div class="badge badge-danger">PANDING</div>
+           </td>
+        
+         {% else %}
+         <td class="font-weight-medium">
+             <div class="badge badge-success">Completed</div>
+           </td>
+         {%endif%} {% endcomment %}
+            <td><a href="">Edit</a></td>
+                
+               
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock %}

@@ -34,7 +34,7 @@
   
   </p>
 {% comment %} 
-  <option value="{{object.designation.id}}">{{object.designation}}</option>
+  <option value="{{object.status.id}}">{{object.status}}</option>
   {% for i in brands %}
   <option value="{{i.id}}">
       {{i}}
@@ -149,6 +149,24 @@
           <label for="id_remark">Remark</label>
           <input class="form-control" type="text"  name="remark" value="{{editleadreg.remark }}"  maxlength="100" id="id_remark" rows="4"></textarea>
         </div>
+
+        <div id="div_id_status" class="form-group"> 
+          <label for="id_status" class=" requiredField"> Lead Status</label>
+        
+          <select name="status" class="select form-control" 
+              id="id_status">
+              <option value="{{editleadreg.status.id}}" style="color:black">{{editleadreg.status}}</option>
+              <option value="PENDING">PENDING</option>
+              <option value="APPROVED">APPROVED</option>
+              <option value="CLOSE">CLOSE</option>
+              <option value="CANCEL">CANCEL</option>
+        
+        
+        
+          </select> 
+        </div>
+
+        
         <div class="form-group">
           <label for="id_connector">Connector</label>
             <select class="form-control" name="connector"  id="id_connector">
@@ -160,6 +178,47 @@
                 {% endfor %}
               </select> 
           </div>
+
+          
+        <div class="form-group">
+          <label for="id_remark">Paybal Revenue</label>
+          <input class="form-control" type="text"  name="con_paybal_revenue" value="{{editleadreg.con_paybal_revenue }}"  maxlength="100" id="id_remark" rows="4"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="id_remark">Final Revenue</label>
+          <input class="form-control" type="text"  name="con_paid_revenue" value="{{editleadreg.con_paid_revenue }}"  maxlength="100" id="id_remark" rows="4"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="id_party_name">Transaction Number</label>
+          <input type="text" class="form-control" name="trx_no" value="{{editleadreg.trx_no }}" required id="id_party_name" value="0" placeholder="">
+        </div>
+
+        <div class="form-group">
+          <label for="id_party_name">Transaction date</label>
+          <input type="Date" class="form-control" name="trx_date" required value="{{editleadreg.trx_date }}" id="id_party_name" placeholder="">
+        </div>
+
+        <div id="div_id_con_revenue_status" class="form-group"> 
+          <label for="id_con_revenue_status" class=" requiredField"> Revenue Status</label>
+        
+          <select name="con_revenue_status" class="select form-control" 
+              id="id_con_revenue_status">
+              <option value="{{editleadreg.con_revenue_status.id}}" style="color:black">{{editleadreg.con_revenue_status}}</option>
+              <option value="PENDING">PENDING</option>
+              <option value="PAID">PAID</option>
+              <option value="CANCEL">CANCEL</option>
+        
+        
+        
+          </select> 
+        </div>
+
+
+     
+
+
           
         <button type="submit" class="btn btn-primary mr-2">Submit</button>
         <a href="{% url 'lead:view_lead_reg' %}"  class="btn btn-light">Cancel</a>

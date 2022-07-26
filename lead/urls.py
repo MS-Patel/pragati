@@ -1,7 +1,6 @@
 from django.urls import path
 from .import views
 from django.contrib.auth import views as auth_views
-
 app_name="lead"
 
 urlpatterns = [
@@ -66,5 +65,19 @@ urlpatterns = [
 
     ###################  Registration Details #######################
     path('lead/view_reg',views.view_reg,name="view_reg"),
+
+
+
+
+        
+    ###################  Revenue #######################
+
+    path('lead/view_revenue',views.view_revenue,name="view_revenue"),
+    # path('lead/view_paid_revenue',views.view_paid_revenue,name="view_paid_revenue"),
+    # path('lead/view_pending_revenue',views.view_pending_revenue,name="view_pending_revenue"),
+    # path('lead/add_revenue',views.add_revenue,name="add_revenue"),
+    # path('lead/create_revenue',views.create_revenue,name="create_revenue"),
+    # path('lead/edit_revenue/<int:id>',views.edit_revenue,name="edit_revenue"),
+    # path('lead/update_revenue/<int:id>',views.update_revenue,name="update_revenue"),
 
 ]

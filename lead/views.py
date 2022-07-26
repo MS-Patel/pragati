@@ -1,43 +1,61 @@
+from datetime import date, datetime
+
 import os
+
 from django.shortcuts import render,redirect
+from fileinput import filename
+from django.core.files.storage import FileSystemStorage
 from django.contrib import messages
 from accounts.models import Register
-from lead.models import Banner, Category, Connector, Lead, Service_types
+from lead.models import Banner, Category, Connector, Lead,  Service_types
 from .forms import Banner_form, Category_form,Service_types_form,Connector_form,Lead_form
 from django.http import HttpResponse
-from django.contrib.auth.decorators import login_required
+
+import requests 
 from django.db.models import Count
+from datetime import datetime
+from django.utils import timezone
+from django.db.models import Value
+from django.db.models import Max
 
 
 
 def home(request):
-    service=Service_types.objects.all()
-    service_count=service.count()
+    services=Service_types.objects.all()
+ 
 
     lead=Lead.objects.all()
-    lead_count=lead.count()
-   
-    today_lead= Lead.objects.values('lead_date').annotate(count=Count('lead_date')).values('count').order_by('lead_date').last()
 
-    pending_leads=Lead.objects.filter(status='PENDING').count()
-
-   
-
-    connector=Connector.objects.all()
-    connector_count=connector.count()
-
-
+    connectors=Connector.objects.all()
     
-   
-    chart_lead= Lead.objects.filter(status='PENDING').count()
-    chart_completed_lead= Lead.objects.filter(status='APPROVED').count()
-    chart_close_lead= Lead.objects.filter(status='CLOSE').count()
-    chart_cancel_lead= Lead.objects.filter(status='CANCEL').count()
+    
 
    
+    today_lead= lead.filter(lead_date = date.today())
+    
+    
+    # x=Lead.objects.values('connector').order_by().annotate(Count('connector'))
+    # print(x)
+    best_con=Lead.objects.annotate(lead_code_count=Count('connector')).order_by('-connector_count')[:5]
+    # best_con=Lead.objects.values('connector').annotate(leads=Count('connector'))\
+    #                      .order_by()    
+    # best_con= Lead.objects.filter(lead_code=game) \
+    #                             .values('user') \
+    #                             .annotate(max_value=Max('value')) \
+    #                             .order_by('-max_value')
+    #  today_lead= Lead.objects.values('lead_date').annotate(count=Count('lead_date')).values('count').order_by('lead_date').last()
+    pending_leads=lead.filter(status='PENDING').count()
+
+   
+    chart_lead= lead.filter(status='PENDING').count()
+    chart_completed_lead= lead.filter(status='APPROVED').count()
+    chart_close_lead= lead.filter(status='CLOSE').count()
+    chart_cancel_lead= lead.filter(status='CANCEL').count()
+
+   
 
 
-    return render(request,'index.html',{'chart_close_lead':chart_close_lead,'chart_cancel_lead':chart_cancel_lead,'chart_lead':chart_lead,'chart_completed_lead':chart_completed_lead,'pending_leads':pending_leads,'today_lead':today_lead,'service_count':service_count,'lead_count':lead_count,'lead':lead,'connector_count':connector_count})
+    return render(request,'index.html',{'best_con':best_con,'chart_lead':chart_lead,'chart_completed_lead':chart_completed_lead,'chart_close_lead':chart_close_lead,'chart_cancel_lead':chart_cancel_lead,'today_lead':today_lead,'pending_leads':pending_leads,'services':services,'lead':lead,'connectors':connectors})
 
 # def login(request):
 #     return render(request,'login.html')
@@ -195,21 +213,22 @@ def create_lead_reg(request):
         party_email = request.POST.get("party_email")
         party_address = request.POST.get("party_address")
         remark = request.POST.get("remark")
-    
+        con_paybal_revenue=request.POST.get("con_paybal_revenue")
+     
         #connector = request.POST.get("connector")
         conn = Connector.objects.get(id=1)
 
-        Lead.objects.get_or_create(category=category,service_type=service_type,lead_code=lead_code,party_name=party_name,party_mobile=party_mobile,party_email=party_email,party_address=party_address,remark=remark,connector=conn)   
+        Lead.objects.get_or_create(category=category,service_type=service_type,lead_code=lead_code,party_name=party_name,party_mobile=party_mobile,party_email=party_email,party_address=party_address,remark=remark,connector=conn,con_paybal_revenue=con_paybal_revenue)   
         messages.success(request, 'Thank You !Your Lead Save Successfully........')
         return redirect('lead:view_lead_reg')
 
 
 def edit_lead_reg(request,id):
     editleadreg=Lead.objects.get(id=id)
-
+    lead=Lead.objects.all()
     ser_type = Service_types.objects.all()
     conn = Connector.objects.all()
-    return render(request,'edit_lead_reg.html',{'editleadreg':editleadreg,'ser_type':ser_type,'conn':conn})
+    return render(request,'edit_lead_reg.html',{'lead':lead,'editleadreg':editleadreg,'ser_type':ser_type,'conn':conn})
 
 
 def update_lead_reg(request,id):
@@ -224,6 +243,12 @@ def update_lead_reg(request,id):
         party_email = request.POST.get("party_email")
         party_address = request.POST.get("party_address")
         remark = request.POST.get("remark")
+        status = request.POST.get("status")
+        con_paybal_revenue = request.POST.get("con_paybal_revenue")
+        con_paid_revenue = request.POST.get("con_paid_revenue")
+        trx_date = request.POST.get("trx_date")
+        trx_no = request.POST.get("trx_no")
+        con_revenue_status = request.POST.get("con_revenue_status")
         connector = request.POST.get("connector")
         conn = Connector.objects.get(id=connector)
 
@@ -236,6 +261,13 @@ def update_lead_reg(request,id):
         user.party_email=party_email
         user.party_address=party_address
         user.remark=remark
+        user.status=status
+        user.con_paybal_revenue=con_paybal_revenue
+        user.con_paid_revenue=con_paid_revenue
+        user.trx_date=trx_date
+        user.trx_no=trx_no
+        user.con_revenue_status=con_revenue_status
+        
         
         user.save()
 
@@ -385,4 +417,20 @@ def update_banner(request,id):
     context = {'user':user}
     return render(request,'edit_banner.html',context)    
 
+def view_revenue(request):
+    # revenue= Revenue.objects.all()
 
+    # return render(request,'view_revenue.html',{'revenue':revenue})
+
+    revenue=Lead.objects.all()
+
+    return render(request,'view_revenue.html',{'revenue':revenue})
+
+# def view_paid_revenue(request):
+#     revenue=Lead.objects.exclude(con_revenue=0)
+#     return render(request,'view_paid_revenue.html',{'revenue':revenue})
+ 
+# def view_pending_revenue(request):
+    
+#     revenue=Lead.objects.filter(con_revenue='0')
+#     return render(request,'view_pending_revenue.html',{'revenue':revenue})

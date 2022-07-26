@@ -314,7 +314,7 @@
             </a>
             <div class="collapse" id="lead">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{% url 'lead:add_lead_reg' %}">Create Lead</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{% url 'lead:view_lead_reg' %}">View Lead</a></li>
                 <li class="nav-item"> <a class="nav-link" href="{% url 'lead:view_approved_lead_reg' %}">Approved Lead</a></li>
                 
                 <li class="nav-item"> <a class="nav-link" href="{% url 'lead:view_pending_lead_reg' %}">Pending Lead</a></li>
@@ -345,6 +345,26 @@
               <i class="icon-paper menu-icon"></i>
               <span class="menu-title">Reports</span><i class="menu-arrow"></i>
             </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#revenue" aria-expanded="false" aria-controls="master">
+              <i class="icon-layout menu-icon"></i>
+              <span class="menu-title">Revenue</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="revenue">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{% url 'lead:view_revenue' %}">All Revenue</a></li>
+                <li class="nav-item"> <a class="nav-link" href="">Pending Revenue</a></li>
+                <li class="nav-item"> <a class="nav-link" href="">Paid Revenue</a></li>
+             
+               
+              </ul>
+            </div>
+          </li>
+
+    
           </li>
 
                 {% comment %} User Create{% endcomment %}
