@@ -95,6 +95,7 @@ def view_webcontactdetails(request):
     webcontactdetails=Webcontactdetails.objects.all()
     return render(request,'view_webcontactdetails.html',{'view_webcontactdetails':webcontactdetails})
 
+
 def add_webcontactdetails(request):
     
     webcontactdetails=Webcontactdetails.objects.all()
