@@ -57,7 +57,6 @@ class Lead(models.Model):
     ('PAID', 'PAID'),
     ('CANCEL', 'CANCEL'),
     ]
-
     lead_code=models.CharField(max_length=50,unique=True)
     lead_date=models.DateField(default=timezone.now)
     category=models.ForeignKey(Category,verbose_name="category",on_delete=models.CASCADE)
@@ -77,7 +76,6 @@ class Lead(models.Model):
     
     def __str__(self):
         return self.party_name
-
 
 class Banner(models.Model):
     ban_code=models.CharField(max_length=50,unique=True)

@@ -140,22 +140,24 @@
             <div class="st-contact-info">
               <h2 class="st-contact-info-title">Corporate Office</h2>
               <ul class="st-contact-info-list st-mp0">
-                <li><i class="fas fa-map-marker-alt"></i>503 Old Buffalo Street Northwest#205, New York-3087</li>
-                <li><i class="fas fa-phone-volume"></i>+00 222- 333 -7889</li>
-                <li><i class="fas fa-envelope"></i><a href="#">support@pragaticapitals.com</a></li>
+                {% for i in webcontactdetails%}
+                <li><i class="fas fa-map-marker-alt"></i>{{i.web_address}}</li>
+                <li><i class="fas fa-phone-volume"></i><a href = "tel:{{i.web_contactno}}">+{{i.web_contactno}}</a></li>
+                <li><i class="fas fa-envelope"></i><a href = "mailto: {{i.web_email}}">{{i.web_email}}</a></li>
                 <li><i class="fas fa-globe"></i><a href="#">www.pragaticapitals.com</a></li>
               </ul>
+             
             </div>
             <div class="st-height-b30 st-height-lg-b40"></div>
             <div class="st-shidule">
               <h2 class="st-shidule-title">Work Hours</h2>
               <ul class="st-shidule-list st-mp0">
-                <li><span>Monday</span><span>8:00 AM – 4:30 PM</span></li>
-                <li><span>Tuesday</span><span>8:00 AM – 4:30 PM</span></li>
-                <li><span>Wednesday</span><span>8:00 AM – 4:30 PM</span></li>
-                <li><span>Thursday</span><span>8:00 AM – 4:30 PM</span></li>
-                <li><span>Friday</span><span>8:00 AM – 2:30 PM</span></li>
-                <li><span>Saturday</span><span>8:00 AM – 2:30 PM</span></li>
+                <li><span>Monday</span><span>{{i.web_worktime}}</span></li>
+                <li><span>Tuesday</span><span>{{i.web_worktime}}</span></li>
+                <li><span>Wednesday</span><span>{{i.web_worktime}}</span></li>
+                <li><span>Thursday</span><span>{{i.web_worktime}}</span></li>
+                <li><span>Friday</span><span>{{i.web_worktime}}</span></li>
+                <li><span>Saturday</span><span>{{i.web_worktime}}</span></li>
                 <li><span>Sunday</span><span>Closed</span></li>
               </ul>
             </div>
@@ -163,6 +165,7 @@
           </div>
         </div>
       </div>
+      {% endfor %}
       <div class="st-height-b90 st-height-lg-b50"></div>
     </section>
     <!-- End Contact Section -->

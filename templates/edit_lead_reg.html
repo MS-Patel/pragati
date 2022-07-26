@@ -6,222 +6,37 @@
 {%load crispy_forms_filters%}
 
 
-{% comment %} <form action="{% url 'lead:update_lead_reg' editleadreg.pk %}"  method="post" >
-    {% csrf_token %}
-    <p>
-  <label for="id_lead_code">Lead code:</label>
-  <input type="text" name="lead_code" maxlength="50" value="{{editleadreg.lead_code }}" readonly required id="id_lead_code">
-  
-  
-  </p>
-  
-  
- 
-  
-  
-  <p>
-  <label for="id_service_type">Services:</label>
-  <select name="service_type" required id="id_service_type">
-  <option value="{{editleadreg.service_type.id }}" selected>{{editleadreg.service_type }}</option>
-  
-  {% for i in ser_type %}
-  <option value="{{i.id}}">
-      {{i}}
-  </option>
-  {% endfor %}
-</select> 
-  
-  
-  </p>
-{% comment %} 
-  <option value="{{object.status.id}}">{{object.status}}</option>
-  {% for i in brands %}
-  <option value="{{i.id}}">
-      {{i}}
-  </option>
-  {% endfor %}
-</select> {% endcomment %}
-  
-{% comment %}   
-  <p>
-  <label for="id_party_name">Party name:</label>
-  <input type="text" name="party_name" maxlength="50" value="{{editleadreg.party_name }}" required id="id_party_name">
-  
-  
-  </p>
-  
-  
-  <p>
-  <label for="id_party_mobile">Party mobile:</label>
-  <input type="number" name="party_mobile" step="1" value="{{editleadreg.party_mobile }}" required id="id_party_mobile">
-  
-  
-  </p>
-  
-  
-  <p>
-  <label for="id_party_email">Party email:</label>
-  <input type="email" name="party_email" maxlength="254" value="{{editleadreg.party_email }}" required id="id_party_email">
-  
-  
-  </p>
-  
-  
-  <p>
-  <label for="id_party_address">Party address:</label>
-  <input type="text" name="party_address" maxlength="100" value="{{editleadreg.party_address }}" required id="id_party_address">
-  
-  
-  </p>
-  
-  
-  <p>
-  <label for="id_remark">Remark:</label>
-  <input type="text" name="remark" maxlength="250" value="{{editleadreg.remark }}" required id="id_remark">
-  
-  
-  </p>
-  
-  
-  <p>
-  <label for="id_connector">Connector:</label>
-  <select name="connector" required id="id_connector">
-  <option value="{{editleadreg.connector.id}}" selected>{{editleadreg.connector }}</option>
-  
-  
-  {% for i in conn %}
-  <option value="{{i.id}}">
-      {{i}}
-  </option>
-  {% endfor %}
-</select> 
-  
-  
-  
-  </p>     
-       <button type="submit" class="btn btn-success">Save</button>
-  
-  </form> 
-  {%endblock%} {% endcomment %}
 
 <div class="col-12 grid-margin stretch-card">
   <div class="card">
     <div class="card-body">
-      <h4 class="card-title">Lead</h4>
+      <h4 class="card-title">Website Contact Details</h4>
       <p class="card-description">
-        Add New Lead
+        Add Contact Details
       </p>
-      <form class="forms-sample" action="{% url 'lead:update_lead_reg' editleadreg.pk %}"  method="post"  >
+      <form class="forms-sample" action="{% url 'web:update_webcontactdetails' editwebcontactdetails.pk %}"  method="post"  >
         {% csrf_token %}
+       
         <div class="form-group">
-          <label for="id_lead_code">Lead Code</label>
-          <input type="text" class="form-control" name="lead_code" value="{{editleadreg.lead_code }}" id="id_lead_code">
+          <label for="id_party_name">Email ID</label>
+          <input type="email" class="form-control" name="web_email" value="{{editwebcontactdetails.web_email }}" id="id_party_name" placeholder="Name">
         </div>
         <div class="form-group">
-          <label for="id_service_type">Services</label>
-            <select class="form-control" name="service_type"  id="id_service_type">
-              <option value="{{editleadreg.service_type.id }}" selected>{{editleadreg.service_type }}</option>
-  
-                  {% for i in ser_type %}
-                  <option value="{{i.id}}">
-                      {{i}}
-                  </option>
-                  {% endfor %}
-                </select> 
-          </div>
-        <div class="form-group">
-          <label for="id_party_name">Name</label>
-          <input type="text" class="form-control" name="party_name" value="{{editleadreg.party_name }}" id="id_party_name" placeholder="Name">
-        </div>
-        <div class="form-group">
-          <label for="id_party_mobile">Mobile</label>
-          <input type="number" class="form-control" id="id_party_mobile" name="party_mobile" value="{{editleadreg.party_mobile }}"  placeholder="Name">
+          <label for="id_party_mobile">Contact No</label>
+          <input type="number" class="form-control" id="id_party_mobile" name="web_contactno" value="{{editwebcontactdetails.web_contactno }}"  placeholder="Name">
         </div>{% comment %} step="1"  {% endcomment %}
-        <div class="form-group">
-          <label for="id_party_email">Email address</label>
-          <input type="email" name="party_email" value="{{editleadreg.party_email }}" class="form-control" id="id_party_email" maxlength="254" placeholder="Email">
-        </div>
+        
         <div class="form-group">
           <label for="id_party_address">Address</label>
-          <input class="form-control"  type="text"  maxlength="100" name="party_address" value="{{editleadreg.party_address }}" id="id_party_address" rows="4"></textarea>
+          <input class="form-control"  type="text"  maxlength="100" name="web_address" value="{{editwebcontactdetails.web_address }}" id="id_party_address" rows="4"></textarea>
         </div>
         <div class="form-group">
-          <label for="id_remark">Remark</label>
-          <input class="form-control" type="text"  name="remark" value="{{editleadreg.remark }}"  maxlength="100" id="id_remark" rows="4"></textarea>
+          <label for="id_remark">Work Time</label>
+          <input class="form-control" type="text"  name="web_worktime" value="{{editwebcontactdetails.web_worktime }}"  maxlength="100" id="id_remark" rows="4"></textarea>
         </div>
-
-        <div id="div_id_status" class="form-group"> 
-          <label for="id_status" class=" requiredField"> Lead Status</label>
         
-          <select name="status" class="select form-control" 
-              id="id_status">
-              <option value="{{editleadreg.status.id}}" style="color:black">{{editleadreg.status}}</option>
-              <option value="PENDING">PENDING</option>
-              <option value="APPROVED">APPROVED</option>
-              <option value="CLOSE">CLOSE</option>
-              <option value="CANCEL">CANCEL</option>
-        
-        
-        
-          </select> 
-        </div>
-
-        
-        <div class="form-group">
-          <label for="id_connector">Connector</label>
-            <select class="form-control" name="connector"  id="id_connector">
-              <option value="{{editleadreg.connector.id}}" selected>{{editleadreg.connector }}</option>
-              {% for i in conn %}
-                <option value="{{i.id}}">
-                    {{i}}
-                </option>
-                {% endfor %}
-              </select> 
-          </div>
-
-          
-        <div class="form-group">
-          <label for="id_remark">Paybal Revenue</label>
-          <input class="form-control" type="text"  name="con_paybal_revenue" value="{{editleadreg.con_paybal_revenue }}"  maxlength="100" id="id_remark" rows="4"></textarea>
-        </div>
-
-        <div class="form-group">
-          <label for="id_remark">Final Revenue</label>
-          <input class="form-control" type="text"  name="con_paid_revenue" value="{{editleadreg.con_paid_revenue }}"  maxlength="100" id="id_remark" rows="4"></textarea>
-        </div>
-
-        <div class="form-group">
-          <label for="id_party_name">Transaction Number</label>
-          <input type="text" class="form-control" name="trx_no" value="{{editleadreg.trx_no }}" required id="id_party_name" value="0" placeholder="">
-        </div>
-
-        <div class="form-group">
-          <label for="id_party_name">Transaction date</label>
-          <input type="Date" class="form-control" name="trx_date" required value="{{editleadreg.trx_date }}" id="id_party_name" placeholder="">
-        </div>
-
-        <div id="div_id_con_revenue_status" class="form-group"> 
-          <label for="id_con_revenue_status" class=" requiredField"> Revenue Status</label>
-        
-          <select name="con_revenue_status" class="select form-control" 
-              id="id_con_revenue_status">
-              <option value="{{editleadreg.con_revenue_status.id}}" style="color:black">{{editleadreg.con_revenue_status}}</option>
-              <option value="PENDING">PENDING</option>
-              <option value="PAID">PAID</option>
-              <option value="CANCEL">CANCEL</option>
-        
-        
-        
-          </select> 
-        </div>
-
-
-     
-
-
-          
         <button type="submit" class="btn btn-primary mr-2">Submit</button>
-        <a href="{% url 'lead:view_lead_reg' %}"  class="btn btn-light">Cancel</a>
+        <a href="{% url 'web:view_webcontactdetails' %}"  class="btn btn-light">Cancel</a>
       </form>
     </div>
   </div>

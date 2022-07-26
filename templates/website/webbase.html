@@ -19,8 +19,6 @@
   <link rel="stylesheet" href="{%static 'assets/css/lightgallery.min.css' %}" />
   <link rel="stylesheet" href="{%static 'assets/css/animate.css' %}" />
   <link rel="stylesheet" href="{%static 'assets/css/style.css' %}" />
-  <link rel="stylesheet" href="{%static 'assets/css/elements/hero.css' %}" />
- 
   <script src="https://kit.fontawesome.com/be73d4c488.js"  crossorigin="anonymous"></script>
  <style>
   .active{
@@ -35,15 +33,22 @@
   <!-- Start Header Section -->
   <header class="st-site-header st-style1 st-sticky-header">
     <div class="st-top-header">
+      {% comment %} {%for i in webcontactdetails %} {% endcomment %}
       <div class="container">
+        {%for i in webcontactdetails %} 
         <div class="st-top-header-in">
+     
           <ul class="st-top-header-list">
-            <li><i class="fas fa-envelope"></i>Email: <a href="{% static '#' %}">info@gmail.com</a></li>
-            <li><i class="fas fa-phone-volume"></i>Contact: <a href="{% static '#' %}">2222-333-7889</a></li>
-            <li><i class="fas fa-clock"></i>Work time: <a href="{% static '#' %}">9:00AM - 18:00PM</a></li>
+
+            <li><i class="fas fa-envelope"></i>Email: <a href="mailto:{{i.web_email}}">   {{i.web_email}}</a></li>
+            <li><i class="fas fa-phone-volume"></i>Contact: <a href="tel:{{i.web_contactno}}">   {{i.web_contactno}}</a></li>
+            <li><i class="fas fa-clock"></i>Work time: <a href="{% static '#' %}">   {{i.web_worktime}}</a></li>
           </ul>
+      
         </div>
+        {%endfor%} 
       </div>
+  
     </div>
     <div class="st-main-header">
       <div class="container">
@@ -213,9 +218,7 @@
   <script src="{% static 'assets/js/textRotate.min.js'%}"></script>
   <script src="{% static 'assets/js/main.js'%}"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-  <script src="{%static  'js/owl-carousel.js'%}"></script>
+{% block script%}
 
-
-
-
+{%endblock script%}
 </html>

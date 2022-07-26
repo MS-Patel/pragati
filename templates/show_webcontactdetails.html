@@ -1,0 +1,44 @@
+
+{% extends 'base.html' %}
+
+{% load static  %}
+{% block content %}
+{%load crispy_forms_filters%}
+
+
+<div class="col-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Website Contact Details</h4>
+      <p class="card-description">
+        Show Website Contect Details
+      </p>
+      <form class="forms-sample" action="{% url 'web:view_webcontactdetails' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="id_ban_code">Email ID</label>
+          <input type="email" class="form-control" name="web_email" value="{{ editwebcontactdetails.web_email }}" id="id_ban_code" readonly placeholder="Name">
+        </div>
+        
+        <div class="form-group">
+          <label for="id_con_branch">Contact No</label>
+          <input type="number" name="web_contactno" value="{{editwebcontactdetails.web_contactno }}" readonly class="form-control" id="id_con_branch" placeholder="Branch Name">
+        </div>
+
+        <div class="form-group">
+          <label for="id_con_branch">Address</label>
+          <input type="text" name="web_address" value="{{editwebcontactdetails.web_address }}" readonly class="form-control" id="id_con_branch" placeholder="Branch Name">
+        </div>
+
+        <div class="form-group">
+          <label for="id_con_branch">Work Time</label>
+          <input type="text" name="web_worktime" value="{{editwebcontactdetails.web_worktime }}" readonly class="form-control" id="id_con_branch" placeholder="Branch Name">
+        </div>
+       
+        <button type="submit" class="btn btn-primary mr-2">Submit</button>
+        <button class="btn btn-light">Cancel</button>
+      </form>
+    </div>
+  </div>
+</div>
+{%endblock%}

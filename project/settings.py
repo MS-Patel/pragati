@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'lead',
     'crispy_forms',
     'accounts',
+    'web',
 ]
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'

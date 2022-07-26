@@ -4,21 +4,22 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 
 from django.http import JsonResponse
-from django.contrib.auth.decorators import login_required
+
 import json as simplejson
-from lead.models import Banner, Category, Connector, Lead, Service_types
+from lead.models import Banner,Category, Connector, Lead, Service_types
 from django.contrib import messages
 
-# Create your views here.
-# Create your views here.
+from web.models import Webcontactdetails
 
+# Create your views here.
+# Create your views here.
 def webhome(request):
     cat= Category.objects.all().order_by('cat_id')[:4]
     service=Service_types.objects.all()
     service_count=service.count()
-    banner= Banner.objects.all()
-
-    return render(request,'website/webindex.html',{'cat':cat,'service_count':service_count,'banner':banner})
+    banner= Banner.objects.all()    
+    webcontactdetails=Webcontactdetails.objects.all()
+    return render(request,'website/webindex.html',{'cat':cat,'service_count':service_count,'banner':banner,'webcontactdetails':webcontactdetails})
 
 def about(request):
     cat=Category.objects.all().order_by('cat_id')[:4]
@@ -41,7 +42,8 @@ def contact(request):
         no='LED/2223/1'
     # service=Service_types.objects.all()
     connect=Connector.objects.all()
-    return render(request,'website/contact.html',{'in_num':no,'con':con,'connect':connect,'category':category,'cat':cat})
+    webcontactdetails=Webcontactdetails.objects.all()
+    return render(request,'website/contact.html',{'webcontactdetails':webcontactdetails,'in_num':no,'con':con,'connect':connect,'category':category,'cat':cat})
 
 def load_states(request):
     category_id = request.GET.get('category')
@@ -51,16 +53,6 @@ def load_states(request):
     return render(request, 'drop_services.html', {'services': services})
 
 
-# def get_topics_ajax(request):
-#     if request.method == "POST":
-#         cat_id = request.POST['cat_id']
-#         try:
-#             category = Category.objects.filter(id = cat_id).first()
-#             topics = Service_types.objects.filter(category = category)
-#         except Exception:
-#             data['error_message'] = 'error'
-#             return JsonResponse(data)
-#         return JsonResponse(list(topics.values('id', 'name')), safe = False) 
 
 def sentlead(request):
     
@@ -75,8 +67,6 @@ def sentlead(request):
             return HttpResponse("please enter category")
 
 
-        # service_type = request.POST.get("service_types")
-        # ser_type = Service_types.objects.get(id=service_type)
 
         if request.POST.get("service_type"):
             service_type = Service_types.objects.get(id=request.POST.get("service_type"))
@@ -99,4 +89,59 @@ def sentlead(request):
         return redirect('web:contact')
 
     
+ ######################## Website Contact Details ############################
+
+def view_webcontactdetails(request):
+    webcontactdetails=Webcontactdetails.objects.all()
+    return render(request,'view_webcontactdetails.html',{'view_webcontactdetails':webcontactdetails})
+
+def add_webcontactdetails(request):
+    
+    webcontactdetails=Webcontactdetails.objects.all()
+   
+    return render(request,'add_webcontactdetails.html',{'add_webcontactdetails':webcontactdetails})
+
+
+def create_webcontactdetails(request):
+
+    if request.method == 'POST':
+
         
+        web_contactno = request.POST.get("web_contactno")
+        web_email = request.POST.get("web_email")
+        web_address = request.POST.get("web_address")
+        web_worktime = request.POST.get("web_worktime")
+     
+       
+
+        Webcontactdetails.objects.get_or_create(web_contactno=web_contactno,web_email=web_email,web_address=web_address,web_worktime=web_worktime)   
+        
+        return redirect('web:view_webcontactdetails')
+     
+
+def edit_webcontactdetails(request,id):
+    editwebcontactdetails=Webcontactdetails.objects.get(id=id)
+    return render(request,'edit_webcontactdetails.html',{'editwebcontactdetails':editwebcontactdetails})
+
+def show_webcontactdetails(request,id):
+    editwebcontactdetails=Webcontactdetails.objects.get(id=id)
+    return render(request,'show_webcontactdetails.html',{'editwebcontactdetails':editwebcontactdetails})
+
+
+def update_webcontactdetails(request,id):
+    user=Webcontactdetails.objects.get(id=id)   
+
+    if request.method == 'POST':
+        
+       
+        user.web_contactno = request.POST.get("web_contactno")
+        user.web_email = request.POST.get("web_email")
+        user.web_address = request.POST.get("web_address")
+        user.web_worktime = request.POST.get("web_worktime")
+
+        user.save()
+        # messages.success(request, "Banner update")
+        return redirect('web:view_webcontactdetails')
+
+    context = {'user':user}
+    return render(request,'edit_webcontactdetails.html',context)          

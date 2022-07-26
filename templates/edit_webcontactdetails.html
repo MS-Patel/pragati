@@ -1,0 +1,141 @@
+
+{% extends 'base.html' %}
+
+{% load static  %}
+{% block content %}
+{%load crispy_forms_filters%}
+
+
+{% comment %} <form action="{% url 'lead:update_lead_reg' editleadreg.pk %}"  method="post" >
+    {% csrf_token %}
+    <p>
+  <label for="id_lead_code">Lead code:</label>
+  <input type="text" name="lead_code" maxlength="50" value="{{editleadreg.lead_code }}" readonly required id="id_lead_code">
+  
+  
+  </p>
+  
+  
+ 
+  
+  
+  <p>
+  <label for="id_service_type">Services:</label>
+  <select name="service_type" required id="id_service_type">
+  <option value="{{editleadreg.service_type.id }}" selected>{{editleadreg.service_type }}</option>
+  
+  {% for i in ser_type %}
+  <option value="{{i.id}}">
+      {{i}}
+  </option>
+  {% endfor %}
+</select> 
+  
+  
+  </p>
+{% comment %} 
+  <option value="{{object.designation.id}}">{{object.designation}}</option>
+  {% for i in brands %}
+  <option value="{{i.id}}">
+      {{i}}
+  </option>
+  {% endfor %}
+</select> {% endcomment %}
+  
+{% comment %}   
+  <p>
+  <label for="id_party_name">Party name:</label>
+  <input type="text" name="party_name" maxlength="50" value="{{editleadreg.party_name }}" required id="id_party_name">
+  
+  
+  </p>
+  
+  
+  <p>
+  <label for="id_party_mobile">Party mobile:</label>
+  <input type="number" name="party_mobile" step="1" value="{{editleadreg.party_mobile }}" required id="id_party_mobile">
+  
+  
+  </p>
+  
+  
+  <p>
+  <label for="id_party_email">Party email:</label>
+  <input type="email" name="party_email" maxlength="254" value="{{editleadreg.party_email }}" required id="id_party_email">
+  
+  
+  </p>
+  
+  
+  <p>
+  <label for="id_party_address">Party address:</label>
+  <input type="text" name="party_address" maxlength="100" value="{{editleadreg.party_address }}" required id="id_party_address">
+  
+  
+  </p>
+  
+  
+  <p>
+  <label for="id_remark">Remark:</label>
+  <input type="text" name="remark" maxlength="250" value="{{editleadreg.remark }}" required id="id_remark">
+  
+  
+  </p>
+  
+  
+  <p>
+  <label for="id_connector">Connector:</label>
+  <select name="connector" required id="id_connector">
+  <option value="{{editleadreg.connector.id}}" selected>{{editleadreg.connector }}</option>
+  
+  
+  {% for i in conn %}
+  <option value="{{i.id}}">
+      {{i}}
+  </option>
+  {% endfor %}
+</select> 
+  
+  
+  
+  </p>     
+       <button type="submit" class="btn btn-success">Save</button>
+  
+  </form> 
+  {%endblock%} {% endcomment %}
+
+<div class="col-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Lead</h4>
+      <p class="card-description">
+        Add New Lead
+      </p>
+      <form class="forms-sample" action="{% url 'web:update_webcontactdetails' editwebcontactdetails.pk %}"  method="post"  >
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="id_lead_code">Contact No</label>
+          <input type="number" class="form-control" name="web_contactno" value="{{editwebcontactdetails.web_contactno }}" id="id_lead_code">
+        </div>
+        
+        <div class="form-group">
+          <label for="id_party_name">Email ID</label>
+          <input type="email" class="form-control" name="web_email" value="{{editwebcontactdetails.web_email }}" id="id_party_name" placeholder="Name">
+        </div>
+        <div class="form-group">
+          <label for="id_party_mobile">Address</label>
+          <input type="text" class="form-control" id="id_party_mobile" name="web_address" value="{{editwebcontactdetails.web_address }}"  placeholder="">
+        </div>{% comment %} step="1"  {% endcomment %}
+        <div class="form-group">
+          <label for="id_party_email">Work Time</label>
+          <input type="text" name="web_worktime" value="{{editwebcontactdetails.web_worktime }}" class="form-control" id="id_party_email" maxlength="254" placeholder="Email">
+        </div>
+      
+        
+        <button type="submit" class="btn btn-primary mr-2">Submit</button>
+        <a href="{% url 'web:view_webcontactdetails' %}"  class="btn btn-light">Cancel</a>
+      </form>
+    </div>
+  </div>
+</div>
+{%endblock%}

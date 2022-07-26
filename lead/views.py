@@ -1,24 +1,13 @@
-from datetime import date, datetime
-
 import os
-
 from django.shortcuts import render,redirect
 from fileinput import filename
 from django.core.files.storage import FileSystemStorage
 from django.contrib import messages
 from accounts.models import Register
-from lead.models import Banner, Category, Connector, Lead,  Service_types
-from .forms import Banner_form, Category_form,Service_types_form,Connector_form,Lead_form
+from lead.models import Banner, Category, Connector, Lead, Service_types
+from .forms import Banner_form,Category_form,Service_types_form,Connector_form,Lead_form
 from django.http import HttpResponse
-
-import requests 
-from django.db.models import Count
-from datetime import datetime
-from django.utils import timezone
-from django.db.models import Value
-from django.db.models import Max
-
-
+from datetime import date, datetime
 
 def home(request):
     services=Service_types.objects.all()
@@ -32,18 +21,6 @@ def home(request):
 
    
     today_lead= lead.filter(lead_date = date.today())
-    
-    
-    # x=Lead.objects.values('connector').order_by().annotate(Count('connector'))
-    # print(x)
-    best_con=Lead.objects.annotate(lead_code_count=Count('connector')).order_by('-connector_count')[:5]
-    # best_con=Lead.objects.values('connector').annotate(leads=Count('connector'))\
-    #                      .order_by()    
-    # best_con= Lead.objects.filter(lead_code=game) \
-    #                             .values('user') \
-    #                             .annotate(max_value=Max('value')) \
-    #                             .order_by('-max_value')
-    #  today_lead= Lead.objects.values('lead_date').annotate(count=Count('lead_date')).values('count').order_by('lead_date').last()
     pending_leads=lead.filter(status='PENDING').count()
 
    
@@ -55,16 +32,13 @@ def home(request):
    
 
 
-    return render(request,'index.html',{'best_con':best_con,'chart_lead':chart_lead,'chart_completed_lead':chart_completed_lead,'chart_close_lead':chart_close_lead,'chart_cancel_lead':chart_cancel_lead,'today_lead':today_lead,'pending_leads':pending_leads,'services':services,'lead':lead,'connectors':connectors})
+    return render(request,'index.html',{'chart_lead':chart_lead,'chart_completed_lead':chart_completed_lead,'chart_close_lead':chart_close_lead,'chart_cancel_lead':chart_cancel_lead,'today_lead':today_lead,'pending_leads':pending_leads,'services':services,'lead':lead,'connectors':connectors})
 
 # def login(request):
 #     return render(request,'login.html')
   
 # def registration(request):
 #     return render(request,'register.html')
-
-
-
 
 def report(request):
     return render(request,'report.html')
@@ -94,6 +68,7 @@ def create_cat(request):
 def edit_cat(request,id):
     editcat=Category.objects.get(id=id)
     return render(request,'edit_cat.html',{'editcat':editcat})
+
 
 def update_cat(request,id):
     if request.method == 'POST':
@@ -353,6 +328,7 @@ def view_reg(request):
     cat=Register.objects.all()
     return render(request,'view_reg.html',{'view_reg':cat})
 
+
 ######################## Banners Update ############################
 
 def view_banner(request):
@@ -418,19 +394,7 @@ def update_banner(request,id):
     return render(request,'edit_banner.html',context)    
 
 def view_revenue(request):
-    # revenue= Revenue.objects.all()
-
-    # return render(request,'view_revenue.html',{'revenue':revenue})
-
+    
     revenue=Lead.objects.all()
 
     return render(request,'view_revenue.html',{'revenue':revenue})
-
-# def view_paid_revenue(request):
-#     revenue=Lead.objects.exclude(con_revenue=0)
-#     return render(request,'view_paid_revenue.html',{'revenue':revenue})
- 
-# def view_pending_revenue(request):
-    
-#     revenue=Lead.objects.filter(con_revenue='0')
-#     return render(request,'view_pending_revenue.html',{'revenue':revenue})

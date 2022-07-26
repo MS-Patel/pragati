@@ -12,7 +12,6 @@ urlpatterns = [
     # path('lead/registration',views.registration,name="registration"),
     path('lead/report',views.report,name="report"),
 
-
     ###################  Category #######################
     
     path('lead/view_cat',views.view_cat,name="view_cat"),
@@ -52,7 +51,11 @@ urlpatterns = [
     path('lead/show_con_reg/<int:id>',views.show_con_reg,name="show_con_reg"),
     path('lead/update_con_reg<int:id>',views.update_con_reg,name="update_con_reg"),
 
-###################  Banner Details #######################
+
+    path('lead/view_reg',views.view_reg,name="view_reg"),
+
+
+    ###################  Banner Details #######################
 
     
     
@@ -63,21 +66,8 @@ urlpatterns = [
     path('lead/show_banner/<int:id>',views.show_banner,name="show_banner"),
     path('lead/update_banner<int:id>',views.update_banner,name="update_banner"),
 
-    ###################  Registration Details #######################
-    path('lead/view_reg',views.view_reg,name="view_reg"),
-
-
-
-
-        
     ###################  Revenue #######################
 
     path('lead/view_revenue',views.view_revenue,name="view_revenue"),
-    # path('lead/view_paid_revenue',views.view_paid_revenue,name="view_paid_revenue"),
-    # path('lead/view_pending_revenue',views.view_pending_revenue,name="view_pending_revenue"),
-    # path('lead/add_revenue',views.add_revenue,name="add_revenue"),
-    # path('lead/create_revenue',views.create_revenue,name="create_revenue"),
-    # path('lead/edit_revenue/<int:id>',views.edit_revenue,name="edit_revenue"),
-    # path('lead/update_revenue/<int:id>',views.update_revenue,name="update_revenue"),
-
+   
 ]

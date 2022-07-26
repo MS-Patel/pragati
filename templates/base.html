@@ -314,7 +314,7 @@
             </a>
             <div class="collapse" id="lead">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{% url 'lead:view_lead_reg' %}">View Lead</a></li>
+
                 <li class="nav-item"> <a class="nav-link" href="{% url 'lead:view_approved_lead_reg' %}">Approved Lead</a></li>
                 
                 <li class="nav-item"> <a class="nav-link" href="{% url 'lead:view_pending_lead_reg' %}">Pending Lead</a></li>
@@ -346,7 +346,6 @@
               <span class="menu-title">Reports</span><i class="menu-arrow"></i>
             </a>
           </li>
-
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#revenue" aria-expanded="false" aria-controls="master">
               <i class="icon-layout menu-icon"></i>
@@ -364,9 +363,6 @@
             </div>
           </li>
 
-    
-          </li>
-
                 {% comment %} User Create{% endcomment %}
           
                 <li class="nav-item">
@@ -380,13 +376,30 @@
                       <li class="nav-item"> <a class="nav-link" href="{% url 'lead:view_cat' %}">Category</a></li>
                       <li class="nav-item"> <a class="nav-link" href="{% url 'lead:view_ser_type' %}">Srvice Types</a></li>
                       <li class="nav-item"> <a class="nav-link" href="{% url 'lead:view_reg' %}">User Details</a></li>
-                      <li class="nav-item"> <a class="nav-link" href="{% url 'lead:view_banner' %}">Banner</a></li>
-                     
+                      
                     </ul>
                   </div>
                 </li>
           
-        </ul>
+     
+
+
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="collapse" href="#website" aria-expanded="false" aria-controls="master">
+            <i class="icon-layout menu-icon"></i>
+            <span class="menu-title">Website</span>
+            <i class="menu-arrow"></i>
+          </a>
+          <div class="collapse" id="website">
+            <ul class="nav flex-column sub-menu">
+              
+              <li class="nav-item"> <a class="nav-link" href="{% url 'lead:view_banner' %}">Banner</a></li>
+              <li class="nav-item"> <a class="nav-link" href="{% url 'web:view_webcontactdetails' %}">Contact Details</a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+
       </nav>
       <!-- partial -->
     

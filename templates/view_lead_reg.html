@@ -15,7 +15,7 @@
         <button type="submit" class="btn btn-success">Add New Lead</button></a>
     </div>
     <p class="card-description">
-        View Leads  | Total Leads : {{view_lead_reg|length}} <h5 style="color:green">{% if messages %}
+        View Leads <h5 style="color:green">{% if messages %}
           {% for message in messages %}
               <div>{{ message }}</div>
           {% endfor %}
@@ -50,22 +50,7 @@
             <td>{{i.party_address}}</td>
             <td>{{i.remark}}</td>
             <td>{{i.connector}}</td>
-            {% if i.status == "PENDING" %}
-            <td class="font-weight-medium">
-            <div class="badge badge-warning">{{i.status}}</div>
-            </td>
-   
-            {% elif  i.status == "APPROVED" %}
-            <td class="font-weight-medium">
-             <div class="badge badge-success">{{i.status}}</div>
-             </td>
-   
-             {% else %}
-             <td class="font-weight-medium">
-               <div class="badge badge-danger">{{i.status}}</div>
-               </td>
-               {%endif%}
-        
+            <td>{{i.status}}</td>
             <td><a href="{% url 'lead:edit_lead_reg' i.pk  %}">Edit</a></td>
                 
                

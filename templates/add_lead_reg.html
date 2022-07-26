@@ -47,7 +47,7 @@
         </div>
         <div class="form-group">
           <label for="id_party_mobile">Mobile</label>
-          <input type="number" class="form-control" name="party_mobile" id="id_party_mobile" autocomplete="off"  placeholder="Mobile" required>
+          <input type="number" class="form-control" name="party_mobile" id="id_party_mobile" autocomplete="off"  placeholder="Name" required>
         </div>{% comment %} step="1"  {% endcomment %}
         <div class="form-group">
           <label for="id_party_email">Email address</label>
@@ -55,13 +55,12 @@
         </div>
         <div class="form-group">
           <label for="id_party_address">Address</label>
-          <textarea class="form-control" maxlength="100" name="party_address" placeholder="Address" autocomplete="off"  id="id_party_address" rows="4" required></textarea>
+          <textarea class="form-control" maxlength="100" name="party_address" autocomplete="off"  id="id_party_address" rows="4" required></textarea>
         </div>
         <div class="form-group">
           <label for="id_remark">Remark</label>
-          <textarea class="form-control" name="remark" maxlength="100" placeholder="Remark" autocomplete="off"  id="id_remark" rows="4"></textarea>
+          <textarea class="form-control" name="remark" maxlength="100" autocomplete="off"  id="id_remark" rows="4"></textarea>
         </div>
-
         <div class="form-group">
           <label for="id_connector">Connector</label>
             <select class="form-control" name="connector"  id="id_connector" required >
@@ -73,12 +72,6 @@
                 {% endfor %}
               </select> 
           </div>
-
-          <div class="form-group">
-            <label for="id_con_paybal_revenue">Paybal Revenue</label>
-            <input type="text" class="form-control" name="con_paybal_revenue" id="id_con_paybal_revenue" autocomplete="off" default="0"  value="0" required>
-          </div>
-          
         <button type="submit" class="btn btn-primary mr-2">Submit</button>
      <a href="{% url 'lead:view_lead_reg' %}"  class="btn btn-light">Cancel</a>
       </form>
